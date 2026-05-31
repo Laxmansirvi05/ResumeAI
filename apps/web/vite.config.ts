@@ -20,6 +20,7 @@ const serverProxy = serverPaths.reduce(
 		acc[path] = {
 			target: `http://localhost:${process.env.SERVER_PORT ?? "3001"}`,
 			changeOrigin: true,
+			cookieDomainRewrite: "",
 		};
 		return acc;
 	},

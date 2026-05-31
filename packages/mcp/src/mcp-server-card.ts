@@ -77,7 +77,7 @@ export function buildMcpServerCard(appVersion: string) {
 			title: "Get Resume Analysis",
 			description: [
 				"Returns the latest saved AI analysis for a resume (scorecard, strengths, suggestions), if any.",
-				"Analyses are created from the Reactive Resume web app AI flow, not from MCP.",
+				"Analyses are created from the ResumeAI web app AI flow, not from MCP.",
 				`Returns JSON or a short message if none exists. Use \`${T.listResumes}\` to find resume IDs.`,
 			].join("\n"),
 			inputSchema: toJsonSchemaCompat(z.object({ id: resumeId })),
@@ -115,7 +115,7 @@ export function buildMcpServerCard(appVersion: string) {
 			name: T.importResume,
 			title: "Import Resume",
 			description: [
-				"Create a new resume from a full ResumeData JSON object (e.g. an exported file from Reactive Resume).",
+				"Create a new resume from a full ResumeData JSON object (e.g. an exported file from ResumeAI).",
 				"A random name and slug are assigned automatically, like the web importer.",
 				`For small edits to an existing resume, prefer \`${T.patchResume}\` instead of re-importing.`,
 				"Large payloads may exceed MCP client message limits — in that case, use the web UI or the HTTP API.",
@@ -318,16 +318,12 @@ export function buildMcpServerCard(appVersion: string) {
 			},
 		},
 		serverInfo: {
-			name: "reactive-resume",
+			name: "resumeai",
 			version: appVersion,
-			title: "Reactive Resume",
-			websiteUrl: "https://rxresu.me",
+			title: "ResumeAI",
+			websiteUrl: "https://resumeai.app",
 			description:
-				"Reactive Resume is a free and open-source resume builder. Use this MCP server to interact with your resume using an LLM of your choice.",
-			icons: [
-				{ src: "https://rxresu.me/icon/light.svg", mimeType: "image/svg+xml", theme: "light" as const },
-				{ src: "https://rxresu.me/icon/dark.svg", mimeType: "image/svg+xml", theme: "dark" as const },
-			],
+				"ResumeAI is a premium, AI-powered resume builder. Use this MCP server to interact with your resume using an LLM of your choice.",
 		},
 		tools,
 		prompts,

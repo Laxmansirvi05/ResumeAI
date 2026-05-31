@@ -20,12 +20,12 @@ const renderPrefooter = () =>
 describe("Prefooter", () => {
 	it("renders the community tagline as a heading", () => {
 		renderPrefooter();
-		expect(screen.getByText("By the community, for the community.")).toBeInTheDocument();
+		expect(screen.getByText("The future of resume building.")).toBeInTheDocument();
 	});
 
 	it("renders the community-thanks paragraph", () => {
 		renderPrefooter();
-		expect(screen.getByText(/vibrant community/)).toBeInTheDocument();
+		expect(screen.getByText(/ResumeAI uses cutting-edge/)).toBeInTheDocument();
 	});
 
 	it("renders the decorative TextMaskEffect (svg)", () => {

@@ -12,15 +12,6 @@ vi.mock("@tanstack/react-router", () => ({
 		</a>
 	),
 }));
-vi.mock("@/components/input/github-stars-button", () => ({
-	GithubStarsButton: () => <div data-testid="github-stars-button" />,
-}));
-vi.mock("@/features/locale/combobox", () => ({
-	LocaleCombobox: ({ render: renderProp }: { render: React.ReactElement }) => renderProp,
-}));
-vi.mock("@/features/theme/toggle-button", () => ({
-	ThemeToggleButton: () => <button type="button" data-testid="theme-toggle" />,
-}));
 
 i18n.loadAndActivate({ locale: "en", messages: {} });
 
@@ -38,19 +29,13 @@ describe("Header", () => {
 		const { container } = renderHeader();
 		const home = Array.from(container.querySelectorAll("a")).find((a) => a.getAttribute("href") === "/");
 		expect(home).toBeDefined();
-		expect(home?.getAttribute("aria-label")).toBe("Reactive Resume - Go to homepage");
+		expect(home?.getAttribute("aria-label")).toBe("ResumeAI - Go to homepage");
 	});
 
-	it("renders a dashboard link with the documented aria-label", () => {
+	it("renders a dashboard link", () => {
 		const { container } = renderHeader();
 		const dashboard = Array.from(container.querySelectorAll("a")).find((a) => a.getAttribute("href") === "/dashboard");
 		expect(dashboard).toBeDefined();
-	});
-
-	it("includes ThemeToggleButton and GithubStarsButton in the navigation", () => {
-		const { getByTestId } = renderHeader();
-		expect(getByTestId("theme-toggle")).toBeInTheDocument();
-		expect(getByTestId("github-stars-button")).toBeInTheDocument();
 	});
 
 	it("labels the navigation landmark", () => {

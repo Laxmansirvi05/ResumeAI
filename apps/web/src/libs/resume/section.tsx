@@ -4,10 +4,8 @@ import { t } from "@lingui/core/macro";
 import {
 	ArticleIcon,
 	BooksIcon,
-	BrainIcon,
 	BriefcaseIcon,
 	CertificateIcon,
-	ChartLineIcon,
 	CodeSimpleIcon,
 	CompassToolIcon,
 	DiamondsFourIcon,
@@ -17,14 +15,11 @@ import {
 	GraduationCapIcon,
 	HandHeartIcon,
 	ImageIcon,
-	InfoIcon,
 	LayoutIcon,
 	MessengerLogoIcon,
-	NotepadIcon,
 	PaletteIcon,
 	PhoneIcon,
 	ReadCvLogoIcon,
-	ShareFatIcon,
 	StarIcon,
 	TextTIcon,
 	TranslateIcon,
@@ -39,18 +34,7 @@ export type LeftSidebarSection = "picture" | "basics" | "summary" | SectionType 
 // CustomSectionType values that are not in SectionType (used in custom sections only)
 type CustomOnlyType = "cover-letter";
 
-export type RightSidebarSection =
-	| "template"
-	| "layout"
-	| "typography"
-	| "design"
-	| "page"
-	| "notes"
-	| "sharing"
-	| "statistics"
-	| "analysis"
-	| "export"
-	| "information";
+export type RightSidebarSection = "template" | "layout" | "typography" | "design" | "page" | "export";
 
 export type SidebarSection = LeftSidebarSection | RightSidebarSection;
 
@@ -79,12 +63,7 @@ export const rightSidebarSections: RightSidebarSection[] = [
 	"typography",
 	"design",
 	"page",
-	"notes",
-	"sharing",
-	"statistics",
-	"analysis",
 	"export",
-	"information",
 ] as const;
 
 export const getSectionTitle = (type: SidebarSection | CustomOnlyType): string => {
@@ -117,12 +96,7 @@ export const getSectionTitle = (type: SidebarSection | CustomOnlyType): string =
 			.with("typography", () => t`Typography`)
 			.with("design", () => t`Design`)
 			.with("page", () => t`Page`)
-			.with("notes", () => t`Notes`)
-			.with("sharing", () => t`Sharing`)
-			.with("statistics", () => t`Statistics`)
-			.with("analysis", () => t`Resume Analysis`)
 			.with("export", () => t`Export`)
-			.with("information", () => t`Information`)
 
 			.exhaustive()
 	);
@@ -160,12 +134,7 @@ export const getSectionIcon = (type: SidebarSection | CustomOnlyType, props?: Ic
 			.with("typography", () => <TextTIcon {...iconProps} />)
 			.with("design", () => <PaletteIcon {...iconProps} />)
 			.with("page", () => <ReadCvLogoIcon {...iconProps} />)
-			.with("notes", () => <NotepadIcon {...iconProps} />)
-			.with("sharing", () => <ShareFatIcon {...iconProps} />)
-			.with("statistics", () => <ChartLineIcon {...iconProps} />)
-			.with("analysis", () => <BrainIcon {...iconProps} />)
 			.with("export", () => <DownloadIcon {...iconProps} />)
-			.with("information", () => <InfoIcon {...iconProps} />)
 
 			.exhaustive()
 	);

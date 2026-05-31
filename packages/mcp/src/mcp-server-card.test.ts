@@ -9,15 +9,10 @@ describe("buildMcpServerCard", () => {
 		expect(card.serverInfo.version).toBe("1.2.3");
 	});
 
-	it("identifies the server as reactive-resume", () => {
-		expect(card.serverInfo.name).toBe("reactive-resume");
-		expect(card.serverInfo.title).toBe("Reactive Resume");
-		expect(card.serverInfo.websiteUrl).toBe("https://rxresu.me");
-	});
-
-	it("exposes light + dark theme icons", () => {
-		const themes = card.serverInfo.icons.map((icon) => icon.theme).sort();
-		expect(themes).toEqual(["dark", "light"]);
+	it("identifies the server as resumeai", () => {
+		expect(card.serverInfo.name).toBe("resumeai");
+		expect(card.serverInfo.title).toBe("ResumeAI");
+		expect(card.serverInfo.websiteUrl).toBe("https://resumeai.app");
 	});
 
 	it("requires authentication with oauth2 + bearer schemes", () => {

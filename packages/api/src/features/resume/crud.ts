@@ -96,17 +96,35 @@ export const crudRouter = {
 			},
 		})
 		.handler(async ({ context, input }) => {
-			const name = generateRandomName();
-			const slug = slugify(name);
+			let name = input.name ? input.name : generateRandomName();
+			let slug = slugify(name);
 
-			return resumeService.create({
-				name,
-				slug,
-				tags: [],
-				data: input.data,
-				locale: context.locale,
-				userId: context.user.id,
-			});
+			let counter = 1;
+			while (true) {
+				try {
+					return await resumeService.create({
+						name,
+						slug,
+						tags: [],
+						data: input.data,
+						locale: context.locale,
+						userId: context.user.id,
+					});
+				} catch (error: unknown) {
+					if (
+						error &&
+						typeof error === "object" &&
+						(error as Record<string, unknown>).code === "RESUME_SLUG_ALREADY_EXISTS"
+					) {
+						counter++;
+						const baseName = input.name ? input.name : name.replace(/ \(\d+\)$/, "");
+						name = `${baseName} (${counter})`;
+						slug = slugify(name);
+						continue;
+					}
+					throw error;
+				}
+			}
 		}),
 
 	update: protectedProcedure

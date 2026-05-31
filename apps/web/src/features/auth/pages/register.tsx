@@ -1,12 +1,10 @@
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { ArrowRightIcon, EyeIcon, EyeSlashIcon } from "@phosphor-icons/react";
-import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link, useNavigate, useRouter } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useToggle } from "usehooks-ts";
 import z from "zod";
-import { Alert, AlertDescription, AlertTitle } from "@reactive-resume/ui/components/alert";
 import { Button } from "@reactive-resume/ui/components/button";
 import { FormControl, FormItem, FormLabel, FormMessage } from "@reactive-resume/ui/components/form";
 import { Input } from "@reactive-resume/ui/components/input";
@@ -34,7 +32,8 @@ type Props = {
 };
 
 export function RegisterPage({ disableEmailAuth }: Props) {
-	const [submitted, setSubmitted] = useState(false);
+	const router = useRouter();
+	const navigate = useNavigate();
 	const [showPassword, toggleShowPassword] = useToggle(false);
 
 	const form = useAppForm({
@@ -64,21 +63,24 @@ export function RegisterPage({ disableEmailAuth }: Props) {
 				return;
 			}
 
-			setSubmitted(true);
 			toast.dismiss(toastId);
+			await router.invalidate();
+			void navigate({ to: "/dashboard", replace: true });
 		},
 	});
-
-	if (submitted) return <PostSignupScreen />;
-
 	return (
 		<>
-			<div className="space-y-1 text-center">
-				<h1 className="font-semibold text-2xl tracking-tight">
-					<Trans>Create a new account</Trans>
+			<div className="mb-8 space-y-2 text-center">
+				<h1 className="font-bold text-2xl tracking-tight">
+					<Trans>Welcome to ResumeAI</Trans>
 				</h1>
+				<p className="text-muted-foreground text-sm">
+					<Trans comment="Subtitle on the registration page">Build professional resumes with AI</Trans>
+				</p>
+			</div>
 
-				<div className="text-muted-foreground">
+			<div className="mb-6 text-center">
+				<div className="text-muted-foreground text-sm">
 					<Trans>
 						Already have an account?{" "}
 						<Button
@@ -243,40 +245,6 @@ export function RegisterPage({ disableEmailAuth }: Props) {
 			)}
 
 			<SocialAuth requestSignUp />
-		</>
-	);
-}
-
-function PostSignupScreen() {
-	return (
-		<>
-			<div className="space-y-1 text-center">
-				<h1 className="font-semibold text-2xl tracking-tight">
-					<Trans>You've got mail!</Trans>
-				</h1>
-				<p className="text-muted-foreground">
-					<Trans>Check your email for a link to verify your account.</Trans>
-				</p>
-			</div>
-
-			<Alert>
-				<AlertTitle>
-					<Trans>This step is optional, but recommended.</Trans>
-				</AlertTitle>
-				<AlertDescription>
-					<Trans>Verifying your email is required when resetting your password.</Trans>
-				</AlertDescription>
-			</Alert>
-
-			<Button
-				nativeButton={false}
-				render={
-					<Link to="/dashboard">
-						<Trans comment="Button label to continue to dashboard after successful registration">Continue</Trans>{" "}
-						<ArrowRightIcon />
-					</Link>
-				}
-			/>
 		</>
 	);
 }

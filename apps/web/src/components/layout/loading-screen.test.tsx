@@ -18,7 +18,7 @@ describe("LoadingScreen", () => {
 			</I18nProvider>,
 		);
 
-		expect(screen.getByText("Loading…")).toBeInTheDocument();
+		expect(screen.getByText("Loading your experience...")).toBeInTheDocument();
 	});
 
 	it("fills the viewport (fixed inset-0)", () => {

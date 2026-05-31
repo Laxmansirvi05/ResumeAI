@@ -164,6 +164,126 @@ function getJsonBoundaryIndices(value: string): { first: number; last: number } 
 	return { first, last: Math.max(lastCurly, lastSquare) };
 }
 
+function mapAiParserVariations(data: Record<string, unknown>): Record<string, unknown> {
+	if (!isObject(data)) return data;
+
+	const output = { ...data };
+	if (!isObject(output.sections)) {
+		output.sections = {};
+	}
+	const sections = { ...(output.sections as Record<string, unknown>) };
+
+	const mapping: Record<string, SectionKey | "summary"> = {
+		skill: "skills",
+		skills: "skills",
+		workExperience: "experience",
+		experience: "experience",
+		projectList: "projects",
+		projects: "projects",
+		education: "education",
+		certifications: "certifications",
+		summary: "summary",
+	};
+
+	const normalizeItemsArray = (items: unknown[], mappedKey: string) => {
+		return items.map((item) => {
+			if (typeof item === "string") {
+				if (mappedKey === "skills") return { name: item };
+				if (mappedKey === "experience") return { company: item, position: "Role", date: "" };
+				if (mappedKey === "education") return { institution: item, area: "", date: "" };
+				if (mappedKey === "projects") return { name: item, description: "" };
+				if (mappedKey === "certifications") return { name: item, issuer: "" };
+				return { name: item };
+			}
+			if (isObject(item)) {
+				// Map common wrong keys in items
+				if (mappedKey === "experience") {
+					if (item.companyName && !item.company) item.company = item.companyName;
+					if (item.title && !item.position) item.position = item.title;
+					if (item.role && !item.position) item.position = item.role;
+					if (item.dates && !item.date) item.date = item.dates;
+				}
+				if (mappedKey === "education") {
+					if (item.school && !item.institution) item.institution = item.school;
+					if (item.university && !item.institution) item.institution = item.university;
+					if (item.degree && !item.area) item.area = item.degree;
+				}
+				if (mappedKey === "projects") {
+					if (item.title && !item.name) item.name = item.title;
+				}
+			}
+			return item;
+		});
+	};
+
+	// 1. Map top-level variations
+	for (const key of Object.keys(output)) {
+		const mappedKey = mapping[key];
+		if (mappedKey) {
+			if (mappedKey === "summary") {
+				if (typeof output[key] === "string") {
+					output.summary = { content: output[key] };
+				} else if (isObject(output[key]) && typeof (output[key] as Record<string, unknown>).content === "string") {
+					output.summary = output[key];
+				}
+			} else {
+				// Must go to sections[mappedKey]
+				const itemsArray = Array.isArray(output[key])
+					? output[key]
+					: isObject(output[key]) && Array.isArray((output[key] as Record<string, unknown>).items)
+						? (output[key] as Record<string, unknown>).items
+						: [];
+
+				if (Array.isArray(itemsArray) && itemsArray.length > 0) {
+					sections[mappedKey] = {
+						items: normalizeItemsArray(itemsArray, mappedKey),
+					};
+				} else if (isObject(output[key])) {
+					// LLM sometimes just returns the section directly
+					sections[mappedKey] = output[key];
+				}
+			}
+		}
+	}
+
+	// 2. Map sections variations and normalize their items too
+	for (const key of Object.keys(sections)) {
+		const mappedKey = mapping[key] || key; // If no mapping, assume the key is correct
+
+		if (mappedKey && mappedKey !== key) {
+			sections[mappedKey] = sections[key];
+			// We can delete sections[key] here if we want to clean up, but keeping it is fine as schema validation strips unknowns
+		}
+
+		// Ensure items array exists and is normalized
+		const sectionObj = sections[mappedKey];
+		if (isObject(sectionObj)) {
+			if (Array.isArray(sectionObj.items)) {
+				sectionObj.items = normalizeItemsArray(sectionObj.items, mappedKey);
+			} else if (Array.isArray(sections[key])) {
+				// Sometimes sections[key] is just the array directly instead of { items: [...] }
+				sections[mappedKey] = { items: normalizeItemsArray(sections[key] as unknown[], mappedKey) };
+			}
+		} else if (Array.isArray(sections[key])) {
+			sections[mappedKey] = { items: normalizeItemsArray(sections[key] as unknown[], mappedKey) };
+		}
+	}
+
+	// 3. Fix name mapping if in root
+	if (typeof output.name === "string" || typeof output.fullName === "string") {
+		const name = output.name || output.fullName;
+		if (!isObject(output.basics)) {
+			output.basics = {};
+		}
+		if (!(output.basics as Record<string, unknown>).name) {
+			(output.basics as Record<string, unknown>).name = name;
+		}
+	}
+
+	output.sections = sections;
+	return output;
+}
+
 function normalizeResumeDataForSchema(data: Record<string, unknown>, diagnostics: ResumeSanitizationDiagnostics) {
 	if (!isObject(data)) return data;
 	if (!isObject(data.sections)) return data;
@@ -238,10 +358,24 @@ export function sanitizeAndParseResumeJson(resultText: string): ResumeSanitizati
 		};
 
 		const repairedJson = jsonrepair(jsonString);
+		console.log("[AI_DEBUG] RAW_JSON_STRING: ", jsonString.slice(0, 500));
+
 		const parsedJson = JSON.parse(repairedJson);
-		const mergedData = mergeDefaults(defaultResumeData, parsedJson);
+		console.log("[AI_DEBUG] PARSED_JSON_ROOT_KEYS: ", Object.keys(parsedJson));
+
+		const mappedJson = mapAiParserVariations(parsedJson as Record<string, unknown>);
+		console.log(
+			"[AI_DEBUG] MAPPED_JSON_SECTIONS: ",
+			Object.keys((mappedJson.sections as Record<string, unknown>) || {}),
+		);
+
+		const mergedData = mergeDefaults(defaultResumeData, mappedJson);
 		const coercedData = coerceValueAgainstTemplate(mergedData, defaultResumeData, "", diagnostics);
 		const normalizedData = normalizeResumeDataForSchema(coercedData as Record<string, unknown>, diagnostics);
+		console.log(
+			"[AI_DEBUG] NORMALIZED_DATA_SECTIONS: ",
+			Object.keys((normalizedData.sections as Record<string, unknown>) || {}),
+		);
 
 		const data = resumeDataSchema.parse({
 			...normalizedData,

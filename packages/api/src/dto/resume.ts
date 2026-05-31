@@ -54,7 +54,7 @@ export const resumeDto = {
 	},
 
 	import: {
-		input: resumeSchema.pick({ data: true }),
+		input: resumeSchema.pick({ data: true }).extend({ name: z.string().optional() }),
 		output: z.string().describe("The ID of the imported resume."),
 	},
 

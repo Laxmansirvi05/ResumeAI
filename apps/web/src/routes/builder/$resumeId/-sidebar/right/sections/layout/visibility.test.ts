@@ -9,7 +9,7 @@ describe("filterVisibleLayoutSectionIds", () => {
 	it("removes item-backed sections with no visible items", () => {
 		const data = createResumeData();
 		data.sections.experience.items = [
-			{ hidden: false, company: "Reactive Resume" },
+			{ hidden: false, company: "ResumeAI" },
 			{ hidden: true, company: "Hidden Company" },
 		] as never;
 		data.sections.references.items = [{ hidden: true, name: "Hidden Reference" }] as never;

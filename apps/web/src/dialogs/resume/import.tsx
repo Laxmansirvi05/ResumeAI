@@ -4,14 +4,11 @@ import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { DownloadSimpleIcon, FileIcon, UploadSimpleIcon } from "@phosphor-icons/react";
 import { useStore } from "@tanstack/react-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import z from "zod";
-import { JSONResumeImporter } from "@reactive-resume/import/json-resume";
-import { ReactiveResumeJSONImporter } from "@reactive-resume/import/reactive-resume-json";
-import { ReactiveResumeV4JSONImporter } from "@reactive-resume/import/reactive-resume-v4-json";
 import { Badge } from "@reactive-resume/ui/components/badge";
 import { Button } from "@reactive-resume/ui/components/button";
 import {
@@ -42,33 +39,8 @@ const formSchema = z.discriminatedUnion("type", [
 		file: z.instanceof(File).refine((file) => file.type === "application/pdf", { message: "File must be a PDF" }),
 	}),
 	z.object({
-		type: z.literal("docx"),
-		file: z
-			.instanceof(File)
-			.refine(
-				(file) =>
-					file.type === "application/msword" ||
-					file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-				{ message: "File must be a Microsoft Word document" },
-			),
-	}),
-	z.object({
-		type: z.literal("reactive-resume-json"),
-		file: z
-			.instanceof(File)
-			.refine((file) => file.type === "application/json", { message: "File must be a JSON file" }),
-	}),
-	z.object({
-		type: z.literal("reactive-resume-v4-json"),
-		file: z
-			.instanceof(File)
-			.refine((file) => file.type === "application/json", { message: "File must be a JSON file" }),
-	}),
-	z.object({
-		type: z.literal("json-resume-json"),
-		file: z
-			.instanceof(File)
-			.refine((file) => file.type === "application/json", { message: "File must be a JSON file" }),
+		type: z.literal("image"),
+		file: z.instanceof(File).refine((file) => file.type.startsWith("image/"), { message: "File must be an image" }),
 	}),
 ]);
 
@@ -88,6 +60,12 @@ function fileToBase64(file: File): Promise<string> {
 	});
 }
 
+const LOADING_STEPS = [
+	() => t`Analyzing your resume…`,
+	() => t`Extracting content…`,
+	() => t`Creating editable resume…`,
+];
+
 export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 	const navigate = useNavigate();
 	const closeDialog = useDialogStore((state) => state.closeDialog);
@@ -95,10 +73,9 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 	const prevTypeRef = useRef<string>("");
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [isImporting, setIsImporting] = useState<boolean>(false);
+	const [loadingStep, setLoadingStep] = useState(0);
 
 	const { mutateAsync: importResume } = useMutation(orpc.resume.import.mutationOptions());
-	const { data: aiProviders, isLoading: isLoadingAiProviders } = useQuery(orpc.aiProviders.list.queryOptions());
-	const hasAIProvider = aiProviders?.some((provider) => provider.enabled && provider.testStatus === "success") ?? false;
 
 	const form = useAppForm({
 		defaultValues: {
@@ -110,60 +87,33 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 			if (value.type === "" || !value.file) return;
 
 			setIsImporting(true);
+			setLoadingStep(0);
 
-			const toastId = toast.loading(t`Importing your resume...`, {
-				description: t`This may take a few minutes, depending on the response of the AI provider. Please do not close the window or refresh the page.`,
+			const toastId = toast.loading(t`Analyzing your resume…`, {
+				description: t`Please do not close the window or refresh the page.`,
 			});
 
 			try {
 				let data: ResumeData | undefined;
 
-				if (value.type === "json-resume-json") {
-					const json = await value.file.text();
-					const importer = new JSONResumeImporter();
-					data = importer.parse(json);
-				}
-
-				if (value.type === "reactive-resume-json") {
-					const json = await value.file.text();
-					const importer = new ReactiveResumeJSONImporter();
-					data = importer.parse(json);
-				}
-
-				if (value.type === "reactive-resume-v4-json") {
-					const json = await value.file.text();
-					const importer = new ReactiveResumeV4JSONImporter();
-					data = importer.parse(json);
-				}
-
-				if (value.type === "pdf") {
-					if (isLoadingAiProviders) throw new Error(t`Loading AI providers. Please try again in a moment.`);
-					if (!hasAIProvider)
-						throw new Error(t`This feature requires a tested AI provider. Please add one in the settings.`);
+				if (value.type === "pdf" || value.type === "image") {
+					// Step 1: Analyzing
+					setLoadingStep(0);
+					console.log("[IMPORT] UPLOAD_STARTED | type:", value.type, "| file:", value.file.name);
 
 					const base64 = await fileToBase64(value.file);
+					console.log("[IMPORT] UPLOAD_SUCCESS | base64 length:", base64.length);
 
+					// Step 2: Extracting
+					setLoadingStep(1);
+					toast.loading(t`Extracting content…`, { id: toastId, description: null });
+
+					console.log("[IMPORT] GEMINI_REQUEST | sending to AI...");
 					data = await client.ai.parsePdf({
 						file: { name: value.file.name, data: base64 },
+						mediaType: value.file.type,
 					});
-				}
-
-				if (value.type === "docx") {
-					if (isLoadingAiProviders) throw new Error(t`Loading AI providers. Please try again in a moment.`);
-					if (!hasAIProvider)
-						throw new Error(t`This feature requires a tested AI provider. Please add one in the settings.`);
-
-					const base64 = await fileToBase64(value.file);
-
-					const mediaType =
-						value.file.type === "application/msword"
-							? ("application/msword" as const)
-							: ("application/vnd.openxmlformats-officedocument.wordprocessingml.document" as const);
-
-					data = await client.ai.parseDocx({
-						mediaType,
-						file: { name: value.file.name, data: base64 },
-					});
+					console.log("[IMPORT] TEXT_EXTRACTED | data received");
 				}
 
 				if (!data) {
@@ -175,13 +125,26 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 					);
 				}
 
-				const id = await importResume({ data });
+				// Step 3: Creating
+				setLoadingStep(2);
+				toast.loading(t`Creating editable resume…`, { id: toastId, description: null });
+
+				let importedName = "Imported Resume";
+				if (value.file?.name) {
+					const extIndex = value.file.name.lastIndexOf(".");
+					importedName = extIndex !== -1 ? value.file.name.substring(0, extIndex) : value.file.name;
+				}
+
+				const id = await importResume({ data, name: importedName });
+				console.log("[IMPORT] SAVE_SUCCESS | resumeId:", id);
 				toast.success(t`Your resume has been imported successfully.`, { id: toastId, description: null });
 				closeDialog();
 				void navigate({ to: "/builder/$resumeId", params: { resumeId: id } });
 			} catch (error: unknown) {
+				console.error("[IMPORT] GEMINI_FAILED |", error);
 				toast.error(
 					getOrpcErrorMessage(error, {
+						allowServerMessage: true,
 						byCode: {
 							BAD_REQUEST: t({
 								comment: "Error shown when AI parsing returns invalid resume structure during import",
@@ -191,16 +154,25 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 								comment: "Error shown when AI provider is unreachable during PDF/DOCX resume import",
 								message: "Could not reach the AI provider. Please try again.",
 							}),
+							PRECONDITION_FAILED: t({
+								comment: "Error shown when ENCRYPTION_SECRET is not configured",
+								message: "AI providers are unavailable. Please configure ENCRYPTION_SECRET in your environment.",
+							}),
+							TOO_MANY_REQUESTS: t({
+								comment: "Error shown when Gemini quota is exceeded during import",
+								message: "AI quota exceeded. Please wait a minute and try again.",
+							}),
 						},
 						fallback: t({
 							comment: "Fallback toast when importing a resume fails for an unknown reason",
-							message: "An unknown error occurred while importing your resume.",
+							message: "Import failed. Make sure you have an AI provider configured in Settings → AI Providers.",
 						}),
 					}),
 					{ id: toastId, description: null },
 				);
 			} finally {
 				setIsImporting(false);
+				setLoadingStep(0);
 			}
 		},
 	});
@@ -213,8 +185,19 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 		form.setFieldValue("file", undefined);
 	}, [form, type]);
 
+	const acceptMap: Record<string, string> = {
+		pdf: "application/pdf",
+		image: "image/png,image/jpeg,image/jpg,image/webp",
+	};
+
 	const onSelectFile = () => {
 		if (!inputRef.current) return;
+
+		// Set accept attribute based on selected type
+		if (type && acceptMap[type]) {
+			inputRef.current.accept = acceptMap[type];
+		}
+
 		inputRef.current.click();
 	};
 
@@ -226,6 +209,8 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 
 	useFormBlocker(form);
 
+	const loadingMessage = isImporting ? (LOADING_STEPS[loadingStep]?.() ?? t`Importing…`) : t`Import`;
+
 	return (
 		<DialogContent>
 			<DialogHeader>
@@ -235,8 +220,8 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 				</DialogTitle>
 				<DialogDescription>
 					<Trans>
-						Continue where you left off by importing an existing resume you created using Reactive Resume or any another
-						resume builder. Supported formats include PDF, Microsoft Word, as well as JSON files from Reactive Resume.
+						Upload a PDF or image (PNG, JPEG) of your resume. AI will extract the content and create an editable resume
+						you can customize.
 					</Trans>
 				</DialogDescription>
 			</DialogHeader>
@@ -253,7 +238,7 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 					{(field) => (
 						<FormItem hasError={field.state.meta.isTouched && field.state.meta.errors.length > 0}>
 							<FormLabel>
-								<Trans>Type</Trans>
+								<Trans>File Type</Trans>
 							</FormLabel>
 							<FormControl
 								render={
@@ -264,27 +249,6 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 											field.handleChange(value as ImportType);
 										}}
 										options={[
-											{
-												value: "reactive-resume-json",
-												label: t({
-													comment: "Import source option for current Reactive Resume JSON format",
-													message: "Reactive Resume (JSON)",
-												}),
-											},
-											{
-												value: "reactive-resume-v4-json",
-												label: t({
-													comment: "Import source option for legacy Reactive Resume v4 JSON format",
-													message: "Reactive Resume v4 (JSON)",
-												}),
-											},
-											{
-												value: "json-resume-json",
-												label: t({
-													comment: "Import source option for standard JSON Resume format",
-													message: "JSON Resume",
-												}),
-											},
 											{
 												value: "pdf",
 												label: (
@@ -298,12 +262,12 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 												),
 											},
 											{
-												value: "docx",
+												value: "image",
 												label: (
 													<div className="flex items-center gap-x-2">
 														{t({
 															comment: "File format label in import source selector",
-															message: "Microsoft Word",
+															message: "Image (PNG, JPEG)",
 														})}{" "}
 														<Badge>{t`AI`}</Badge>
 													</div>
@@ -353,7 +317,7 @@ export function ImportResumeDialog(_: DialogProps<"resume.import">) {
 				<DialogFooter>
 					<Button type="submit" disabled={!type || isImporting}>
 						{isImporting ? <Spinner /> : null}
-						{isImporting ? t`Importing…` : t`Import`}
+						{loadingMessage}
 					</Button>
 				</DialogFooter>
 			</form>

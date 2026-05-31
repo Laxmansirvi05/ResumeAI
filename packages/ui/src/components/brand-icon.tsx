@@ -1,24 +1,20 @@
 import { cn } from "@reactive-resume/utils/style";
 
-type Props = React.ComponentProps<"img"> & {
+type Props = React.ComponentProps<"span"> & {
 	variant?: "logo" | "icon";
 };
 
 export function BrandIcon({ variant = "logo", className, ...props }: Props) {
+	if (variant === "icon") {
+		return (
+			<span className={cn("font-bold text-primary tracking-tighter", className)} {...props}>
+				R-AI
+			</span>
+		);
+	}
 	return (
-		<>
-			<img
-				src={`/${variant}/dark.svg`}
-				alt="Reactive Resume"
-				className={cn("hidden size-12 dark:block", className)}
-				{...props}
-			/>
-			<img
-				src={`/${variant}/light.svg`}
-				alt="Reactive Resume"
-				className={cn("block size-12 dark:hidden", className)}
-				{...props}
-			/>
-		</>
+		<span className={cn("font-bold text-primary text-xl tracking-tighter", className)} {...props}>
+			ResumeAI
+		</span>
 	);
 }

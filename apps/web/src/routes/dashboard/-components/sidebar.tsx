@@ -2,18 +2,8 @@ import type { MessageDescriptor } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { Trans } from "@lingui/react/macro";
-import {
-	BrainIcon,
-	ChatCircleDotsIcon,
-	GearSixIcon,
-	KeyIcon,
-	ReadCvLogoIcon,
-	ShieldCheckIcon,
-	UserCircleIcon,
-	WarningIcon,
-} from "@phosphor-icons/react";
+import { ChartBarIcon, ReadCvLogoIcon, ShieldCheckIcon, UserCircleIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, m } from "motion/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@reactive-resume/ui/components/avatar";
 import { BrandIcon } from "@reactive-resume/ui/components/brand-icon";
 import {
@@ -29,10 +19,8 @@ import {
 	SidebarMenuItem,
 	SidebarRail,
 	SidebarSeparator,
-	useSidebarState,
 } from "@reactive-resume/ui/components/sidebar";
 import { getInitials } from "@reactive-resume/utils/string";
-import { Copyright } from "@/components/ui/copyright";
 import { UserDropdownMenu } from "@/features/user/dropdown-menu";
 
 type SidebarItem = {
@@ -48,9 +36,9 @@ const appSidebarItems = [
 		href: "/dashboard/resumes",
 	},
 	{
-		icon: <ChatCircleDotsIcon />,
-		label: msg`Agents`,
-		href: "/agent",
+		icon: <ChartBarIcon />,
+		label: msg`ATS Score`,
+		href: "/dashboard/ats-checker",
 	},
 ] as const satisfies SidebarItem[];
 
@@ -61,29 +49,9 @@ const settingsSidebarItems = [
 		href: "/dashboard/settings/profile",
 	},
 	{
-		icon: <GearSixIcon />,
-		label: msg`Preferences`,
-		href: "/dashboard/settings/preferences",
-	},
-	{
 		icon: <ShieldCheckIcon />,
 		label: msg`Authentication`,
 		href: "/dashboard/settings/authentication",
-	},
-	{
-		icon: <KeyIcon />,
-		label: msg`API Keys`,
-		href: "/dashboard/settings/api-keys",
-	},
-	{
-		icon: <BrainIcon />,
-		label: msg`Integrations`,
-		href: "/dashboard/settings/integrations",
-	},
-	{
-		icon: <WarningIcon />,
-		label: msg`Danger Zone`,
-		href: "/dashboard/settings/danger-zone",
 	},
 ] as const satisfies SidebarItem[];
 
@@ -116,8 +84,6 @@ function SidebarItemList({ items }: SidebarItemListProps) {
 }
 
 export function DashboardSidebar() {
-	const { state } = useSidebarState();
-
 	return (
 		<Sidebar variant="floating" collapsible="icon">
 			<SidebarHeader>
@@ -127,8 +93,8 @@ export function DashboardSidebar() {
 							className="h-auto justify-center"
 							render={
 								<Link to="/">
-									<BrandIcon variant="icon" className="size-6" />
-									<h1 className="sr-only">Reactive Resume</h1>
+									<BrandIcon variant="icon" className="size-6 text-lg!" />
+									<h1 className="sr-only">ResumeAI</h1>
 								</Link>
 							}
 						/>
@@ -182,21 +148,6 @@ export function DashboardSidebar() {
 						</UserDropdownMenu>
 					</SidebarMenuItem>
 				</SidebarMenu>
-
-				<AnimatePresence>
-					{state === "expanded" && (
-						<m.div
-							key="copyright"
-							className="will-change-[transform,opacity]"
-							initial={{ y: 12, opacity: 0 }}
-							animate={{ y: 0, opacity: 1 }}
-							exit={{ y: 12, opacity: 0 }}
-							transition={{ duration: 0.2, ease: "easeOut" }}
-						>
-							<Copyright className="wrap-break-word shrink-0 whitespace-normal p-2" />
-						</m.div>
-					)}
-				</AnimatePresence>
 			</SidebarFooter>
 
 			<SidebarRail />

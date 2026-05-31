@@ -45,7 +45,7 @@ export const ResumeDocument = ({ data, template, resolveSectionTitle }: ResumeDo
 			<Document
 				pageMode="useNone"
 				creationDate={creationDate}
-				producer="Reactive Resume"
+				producer="ResumeAI"
 				title={resumeData.basics.name}
 				author={resumeData.basics.name}
 				creator={resumeData.basics.name}

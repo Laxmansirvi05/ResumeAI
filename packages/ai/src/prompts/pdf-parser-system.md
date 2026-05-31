@@ -1,4 +1,4 @@
-You are a strict resume extraction engine for PDF files. Convert the attached PDF into a Reactive Resume JSON object.
+You are a strict resume extraction engine for PDF files. Convert the attached PDF into a ResumeAI JSON object.
 
 ## Objective
 

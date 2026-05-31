@@ -234,7 +234,7 @@ const getAuthConfig = () => {
 	}
 
 	return betterAuth({
-		appName: "Reactive Resume",
+		appName: "ResumeAI",
 		baseURL: authBaseUrl,
 		secret: env.AUTH_SECRET,
 
@@ -332,6 +332,7 @@ const getAuthConfig = () => {
 			accountLinking: {
 				enabled: true,
 				trustedProviders: ["google", "github", "linkedin"],
+				requireLocalEmailVerified: false,
 			},
 		},
 
@@ -339,7 +340,7 @@ const getAuthConfig = () => {
 			google: {
 				enabled: !!env.GOOGLE_CLIENT_ID && !!env.GOOGLE_CLIENT_SECRET,
 				disableSignUp: env.FLAG_DISABLE_SIGNUPS,
-				disableImplicitSignUp: true,
+				disableImplicitSignUp: false,
 				clientId: env.GOOGLE_CLIENT_ID ?? "",
 				clientSecret: env.GOOGLE_CLIENT_SECRET ?? "",
 				mapProfileToUser: createProfileMapper({
@@ -352,7 +353,7 @@ const getAuthConfig = () => {
 			github: {
 				enabled: !!env.GITHUB_CLIENT_ID && !!env.GITHUB_CLIENT_SECRET,
 				disableSignUp: env.FLAG_DISABLE_SIGNUPS,
-				disableImplicitSignUp: true,
+				disableImplicitSignUp: false,
 				clientId: env.GITHUB_CLIENT_ID ?? "",
 				clientSecret: env.GITHUB_CLIENT_SECRET ?? "",
 				mapProfileToUser: createProfileMapper({
@@ -366,7 +367,7 @@ const getAuthConfig = () => {
 			linkedin: {
 				enabled: !!env.LINKEDIN_CLIENT_ID && !!env.LINKEDIN_CLIENT_SECRET,
 				disableSignUp: env.FLAG_DISABLE_SIGNUPS,
-				disableImplicitSignUp: true,
+				disableImplicitSignUp: false,
 				clientId: env.LINKEDIN_CLIENT_ID ?? "",
 				clientSecret: env.LINKEDIN_CLIENT_SECRET ?? "",
 				mapProfileToUser: createProfileMapper({
@@ -382,7 +383,7 @@ const getAuthConfig = () => {
 			admin(),
 			passkey(),
 			genericOAuth({ config: authConfigs }),
-			twoFactor({ issuer: "Reactive Resume" }),
+			twoFactor({ issuer: "ResumeAI" }),
 			apiKey({
 				enableSessionForAPIKeys: true,
 				rateLimit: {

@@ -101,13 +101,18 @@ export function LoginPage({ disableEmailAuth, disableSignups }: Props) {
 
 	return (
 		<>
-			<div className="space-y-1 text-center">
-				<h1 className="font-semibold text-2xl tracking-tight">
-					<Trans comment="Title on the login page">Sign in to your account</Trans>
+			<div className="mb-8 space-y-2 text-center">
+				<h1 className="font-bold text-2xl tracking-tight">
+					<Trans comment="Title on the login page">Welcome to ResumeAI</Trans>
 				</h1>
+				<p className="text-muted-foreground text-sm">
+					<Trans comment="Subtitle on the login page">Build professional resumes with AI</Trans>
+				</p>
+			</div>
 
+			<div className="mb-6 text-center">
 				{!disableSignups && (
-					<div className="text-muted-foreground">
+					<div className="text-muted-foreground text-sm">
 						<Trans>
 							Don't have an account?{" "}
 							<Button

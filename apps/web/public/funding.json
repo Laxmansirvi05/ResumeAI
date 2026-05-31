@@ -8,16 +8,16 @@
 		"email": "hello@amruthpillai.com",
 		"description": "Software Engineer",
 		"webpageUrl": {
-			"url": "https://rxresu.me/funding.json"
+			"url": "https://resumeai.app/funding.json"
 		}
 	},
 	"projects": [
 		{
 			"guid": "reactive-resume",
-			"name": "Reactive Resume",
+			"name": "ResumeAI",
 			"description": "A free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume.",
 			"webpageUrl": {
-				"url": "https://rxresu.me"
+				"url": "https://resumeai.app"
 			},
 			"repositoryUrl": {
 				"url": "https://github.com/amruthpillai/reactive-resume",

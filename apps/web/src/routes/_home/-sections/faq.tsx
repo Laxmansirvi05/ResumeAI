@@ -2,10 +2,7 @@ import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { m } from "motion/react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@reactive-resume/ui/components/accordion";
-import { buttonVariants } from "@reactive-resume/ui/components/button";
 import { cn } from "@reactive-resume/utils/style";
-
-const crowdinUrl = "https://crowdin.com/project/reactive-resume";
 
 type FAQItemData = {
 	question: string;
@@ -14,49 +11,20 @@ type FAQItemData = {
 
 const getFaqItems = (): FAQItemData[] => [
 	{
-		question: t`Is Reactive Resume really free?`,
-		answer: t`Yes! Reactive Resume is completely free to use, with no hidden costs, premium tiers, or subscription fees. It's open-source and will always remain free.`,
+		question: t`What formats can I import my resume from?`,
+		answer: t`You can instantly import your existing resume from a PDF or an Image. Our AI automatically extracts your information to pre-fill your new, beautiful resume.`,
 	},
 	{
 		question: t`How is my data protected?`,
-		answer: t`Your data is stored securely and is never shared with third parties. You can also self-host Reactive Resume on your own servers for complete control over your data.`,
+		answer: t`Your data is stored securely and is never shared with third parties. Your privacy is a priority.`,
 	},
 	{
 		question: t`Can I export my resume to PDF?`,
 		answer: t`Absolutely! You can export your resume to PDF with a single click. The exported PDF maintains all your formatting and styling perfectly.`,
 	},
 	{
-		question: t`Is Reactive Resume available in multiple languages?`,
-		answer: (
-			<Trans>
-				Yes, Reactive Resume is available in multiple languages. You can choose your preferred language in the settings
-				page, or using the language switcher in the top right corner. If you don't see your language, or you would like
-				to improve the existing translations, you can{" "}
-				<a
-					href={crowdinUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					className={buttonVariants({ variant: "link", className: "h-auto px-0!" })}
-				>
-					contribute to the translations on Crowdin
-					<span className="sr-only">
-						<Trans comment="Screen reader hint indicating the FAQ translation contribution link opens in a new browser tab">
-							{" "}
-							(opens in new tab)
-						</Trans>
-					</span>
-				</a>
-				.
-			</Trans>
-		),
-	},
-	{
-		question: t`What makes Reactive Resume different from other resume builders?`,
-		answer: t`Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall.`,
-	},
-	{
-		question: t`How do I share my resume?`,
-		answer: t`You can share your resume via a unique public URL, protect it with a password, or download it as a PDF to share directly. The choice is yours!`,
+		question: t`How many templates are available?`,
+		answer: t`We offer a curated selection of premium templates designed to fit various professions and styles, ensuring you stand out to recruiters.`,
 	},
 ];
 

@@ -24,28 +24,16 @@ function createRequestClient(request: Request): RouterClient<typeof router> {
 export async function createMcpServer(request: Request) {
 	const server = new McpServer(
 		{
-			name: "reactive-resume",
+			name: "resumeai",
 			version: __APP_VERSION__,
-			title: "Reactive Resume",
-			websiteUrl: "https://rxresu.me",
+			title: "ResumeAI",
+			websiteUrl: "https://resumeai.app",
 			description:
-				"Reactive Resume is a free and open-source resume builder. Use this MCP server to interact with your resume using an LLM of your choice.",
-			icons: [
-				{
-					src: "https://rxresu.me/icon/light.svg",
-					mimeType: "image/svg+xml",
-					theme: "light",
-				},
-				{
-					src: "https://rxresu.me/icon/dark.svg",
-					mimeType: "image/svg+xml",
-					theme: "dark",
-				},
-			],
+				"ResumeAI is a premium, AI-powered resume builder. Use this MCP server to interact with your resume using an LLM of your choice.",
 		},
 		{
 			instructions: [
-				"You are connected to Reactive Resume over MCP.",
+				"You are connected to ResumeAI over MCP.",
 				"Authenticate with OAuth (recommended) or an API key (`x-api-key`).",
 				`Discover resume IDs with \`${MCP_TOOL_NAME.listResumes}\` (not \`resources/list\`).`,
 				`List distinct tags with \`${MCP_TOOL_NAME.listResumeTags}\`.`,

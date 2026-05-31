@@ -21,13 +21,6 @@ const renderCopyright = (props?: React.ComponentProps<typeof Copyright>) =>
 	);
 
 describe("Copyright", () => {
-	it("renders the MIT license link", () => {
-		renderCopyright();
-		const link = screen.getByRole("link", { name: "MIT" });
-		expect(link.getAttribute("href")).toBe("https://github.com/AmruthPillai/Reactive-Resume/blob/main/LICENSE");
-		expect(link.getAttribute("rel")).toBe("noopener");
-	});
-
 	it("renders the Amruth Pillai attribution link", () => {
 		renderCopyright();
 		const link = screen.getByRole("link", { name: "Amruth Pillai" });

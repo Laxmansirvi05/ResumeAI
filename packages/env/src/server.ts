@@ -70,6 +70,14 @@ export const env = createEnv({
 		REDIS_URL: z.url({ protocol: /redis(s)?/ }).optional(),
 		ENCRYPTION_SECRET: z.string().min(32, "ENCRYPTION_SECRET must be at least 32 characters").optional(),
 
+		// AI Fallback Provider (optional)
+		// If set, this key is used as a fallback when no user-configured AI provider exists.
+		GOOGLE_GENERATIVE_AI_API_KEY: z.string().min(1).optional(),
+
+		// Groq Fallback (optional)
+		// Used as an immediate fallback when Gemini is rate-limited (429/quota).
+		GROQ_API_KEY: z.string().min(1).optional(),
+
 		// Feature Flags
 		FLAG_DISABLE_SIGNUPS: z.stringbool().default(false),
 		FLAG_DISABLE_EMAIL_AUTH: z.stringbool().default(false),

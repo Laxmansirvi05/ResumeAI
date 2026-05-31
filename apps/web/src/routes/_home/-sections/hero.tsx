@@ -1,9 +1,8 @@
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
-import { ArrowRightIcon, BookIcon, SparkleIcon } from "@phosphor-icons/react";
+import { ArrowRightIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 import { m } from "motion/react";
-import { Badge } from "@reactive-resume/ui/components/badge";
 import { Button } from "@reactive-resume/ui/components/button";
 import { CometCard } from "@/components/animation/comet-card";
 import { Spotlight } from "@/components/animation/spotlight";
@@ -29,7 +28,7 @@ export function Hero() {
 						autoPlay
 						playsInline
 						src="/videos/timelapse.mp4"
-						aria-label={t`Timelapse demonstration of building a resume with Reactive Resume`}
+						aria-label={t`Timelapse demonstration of building a resume with ResumeAI`}
 						className="pointer-events-none size-full rounded-md border object-cover"
 					/>
 
@@ -41,24 +40,6 @@ export function Hero() {
 			</m.div>
 
 			<div className="relative z-10 flex max-w-2xl flex-col items-center gap-y-6 px-4 xs:px-0 text-center">
-				{/* Badge */}
-				<m.a
-					className="will-change-[transform,opacity]"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.45, delay: 0.55 }}
-					whileHover={{ y: -2, scale: 1.01 }}
-					whileTap={{ scale: 0.985 }}
-					target="_blank"
-					rel="noopener noreferrer"
-					href="https://docs.rxresu.me/getting-started"
-				>
-					<Badge variant="secondary" className="h-auto gap-1.5 px-3 py-0.5">
-						<SparkleIcon aria-hidden="true" className="size-3.5" weight="fill" />
-						<Trans>What's new in the latest version?</Trans>
-					</Badge>
-				</m.a>
-
 				{/* Headline */}
 				<m.div
 					className="will-change-[transform,opacity]"
@@ -67,25 +48,14 @@ export function Hero() {
 					transition={{ duration: 0.45, delay: 0.7 }}
 				>
 					<Trans>
-						<p className="font-medium text-muted-foreground tracking-tight md:text-lg">Finally,</p>
+						<p className="font-medium text-muted-foreground tracking-tight md:text-lg">AI-Powered</p>
 						<h1 className="mt-1 font-semibold text-4xl tracking-tight md:text-5xl lg:text-6xl">
-							A free and open-source resume builder
+							Build your perfect resume in minutes
 						</h1>
 					</Trans>
 				</m.div>
 
-				{/* Description */}
-				<m.p
-					className="max-w-xl text-base text-muted-foreground leading-relaxed will-change-[transform,opacity] md:text-lg"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.45, delay: 0.82 }}
-				>
-					<Trans>
-						Reactive Resume is a free and open-source resume builder that simplifies the process of creating, updating,
-						and sharing your resume.
-					</Trans>
-				</m.p>
+				{/* Headline */}
 
 				{/* CTA Buttons */}
 				<m.div
@@ -108,22 +78,6 @@ export function Hero() {
 									/>
 								</span>
 							</Link>
-						}
-					/>
-
-					<Button
-						size="lg"
-						variant="ghost"
-						className="gap-2 px-4"
-						nativeButton={false}
-						render={
-							<a href="https://docs.rxresu.me" target="_blank" rel="noopener noreferrer">
-								<BookIcon aria-hidden="true" className="size-4" />
-								<Trans>Learn More</Trans>
-								<span className="sr-only">
-									<Trans>(opens in new tab)</Trans>
-								</span>
-							</a>
 						}
 					/>
 				</m.div>

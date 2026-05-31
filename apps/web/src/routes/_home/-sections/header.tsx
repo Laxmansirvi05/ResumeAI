@@ -1,13 +1,11 @@
 import { t } from "@lingui/core/macro";
-import { ArrowRightIcon, TranslateIcon } from "@phosphor-icons/react";
+import { Trans } from "@lingui/react/macro";
+import { ArrowRightIcon } from "@phosphor-icons/react";
 import { Link } from "@tanstack/react-router";
 import { m, useMotionValue, useSpring } from "motion/react";
 import { useEffect, useRef } from "react";
 import { BrandIcon } from "@reactive-resume/ui/components/brand-icon";
 import { Button } from "@reactive-resume/ui/components/button";
-import { GithubStarsButton } from "@/components/input/github-stars-button";
-import { LocaleCombobox } from "@/features/locale/combobox";
-import { ThemeToggleButton } from "@/features/theme/toggle-button";
 
 export function Header() {
 	const y = useMotionValue(0);
@@ -49,35 +47,26 @@ export function Header() {
 			transition={{ duration: 0.35, ease: "easeOut" }}
 		>
 			<nav aria-label={t`Main navigation`} className="container mx-auto flex items-center gap-x-4 p-3 lg:px-12">
-				<Link to="/" className="transition-opacity hover:opacity-80" aria-label={t`Reactive Resume - Go to homepage`}>
+				<Link to="/" className="transition-opacity hover:opacity-80" aria-label={t`ResumeAI - Go to homepage`}>
 					<BrandIcon className="size-10" />
 				</Link>
 
-				<div className="ml-auto flex items-center gap-x-2">
-					<LocaleCombobox
+				<div className="ml-auto flex items-center gap-x-4">
+					<Button
+						nativeButton={false}
+						className="group px-4"
 						render={
-							<Button size="icon" variant="ghost" aria-label={t`Change language`}>
-								<TranslateIcon />
-							</Button>
+							<Link to="/dashboard">
+								<span className="flex items-center gap-2">
+									<Trans>Get Started</Trans>
+									<ArrowRightIcon
+										aria-hidden="true"
+										className="size-4 transition-transform group-hover:translate-x-0.5"
+									/>
+								</span>
+							</Link>
 						}
 					/>
-
-					<ThemeToggleButton />
-
-					<div className="hidden items-center gap-x-4 sm:flex">
-						<GithubStarsButton />
-
-						<Button
-							size="icon"
-							nativeButton={false}
-							aria-label={t`Go to dashboard`}
-							render={
-								<Link to="/dashboard">
-									<ArrowRightIcon aria-hidden="true" />
-								</Link>
-							}
-						/>
-					</div>
 				</div>
 			</nav>
 		</m.header>

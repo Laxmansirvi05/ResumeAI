@@ -25,7 +25,10 @@ function assertSafeUrl(input: string, errorCode: string, options?: { allowUnsafe
 
 export function resolveAiBaseUrl(input: ResolveAiBaseUrlInput) {
 	const baseURL = input.baseURL?.trim() || AI_PROVIDER_DEFAULT_BASE_URLS[input.provider];
-	if (!baseURL) throw new Error("INVALID_AI_BASE_URL");
+	if (!baseURL) {
+		if (input.provider === "gemini") return "";
+		throw new Error("INVALID_AI_BASE_URL");
+	}
 
 	return assertSafeUrl(baseURL, "INVALID_AI_BASE_URL", { allowUnsafe: env.FLAG_ALLOW_UNSAFE_AI_BASE_URL });
 }

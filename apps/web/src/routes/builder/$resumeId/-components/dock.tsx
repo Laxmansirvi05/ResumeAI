@@ -4,7 +4,6 @@ import { t } from "@lingui/core/macro";
 import {
 	AlignCenterHorizontalIcon,
 	AlignTopIcon,
-	ChatCircleDotsIcon,
 	CircleNotchIcon,
 	CubeFocusIcon,
 	FileDocIcon,
@@ -14,7 +13,6 @@ import {
 	MagnifyingGlassMinusIcon,
 	MagnifyingGlassPlusIcon,
 } from "@phosphor-icons/react";
-import { useNavigate } from "@tanstack/react-router";
 import { m } from "motion/react";
 import { useCallback, useMemo, useState } from "react";
 import { useControls } from "react-zoom-pan-pinch";
@@ -37,7 +35,6 @@ type BuilderDockProps = {
 export function BuilderDock({ pageLayout, onTogglePageLayout }: BuilderDockProps) {
 	const { data: session } = authClient.useSession();
 	const resume = useCurrentResume();
-	const navigate = useNavigate();
 
 	const [_, copyToClipboard] = useCopyToClipboard();
 	const { zoomIn, zoomOut, centerView } = useControls();
@@ -111,14 +108,7 @@ export function BuilderDock({ pageLayout, onTogglePageLayout }: BuilderDockProps
 					title={t`Toggle page stacking`}
 					onClick={onTogglePageLayout}
 				/>
-				<DockIcon
-					icon={ChatCircleDotsIcon}
-					title={t`Open AI agent`}
-					onClick={() => {
-						if (!resume) return;
-						void navigate({ to: "/agent/new", search: { resumeId: resume.id } });
-					}}
-				/>
+
 				<div className="mx-1 h-8 w-px bg-border" />
 				<DockIcon icon={LinkSimpleIcon} title={t`Copy URL`} onClick={() => onCopyUrl()} />
 				<DockIcon icon={FileJsIcon} title={t`Download JSON`} onClick={() => onDownloadJSON()} />

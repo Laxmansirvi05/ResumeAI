@@ -18,23 +18,29 @@ function TemplateItem({ metadata }: TemplateItemProps) {
 		<m.div
 			className="group relative shrink-0 will-change-transform"
 			initial={{ scale: 1, zIndex: 10 }}
-			whileHover={{ scale: 1.06, zIndex: 20 }}
-			whileTap={{ scale: 0.99 }}
-			transition={{ type: "spring", stiffness: 320, damping: 26 }}
+			whileHover={{ scale: 1.05, zIndex: 20 }}
+			whileTap={{ scale: 0.98 }}
+			transition={{ type: "spring", stiffness: 350, damping: 28 }}
 		>
-			<div className="relative aspect-page w-48 overflow-hidden rounded-md border bg-card shadow-lg transition-all duration-300 group-hover:shadow-2xl sm:w-56 md:w-64 lg:w-72">
-				<img src={metadata.imageUrl} alt={metadata.name} className="size-full object-cover" />
+			<div className="relative aspect-page w-52 overflow-hidden rounded-lg border border-white/10 bg-card shadow-xl ring-1 ring-white/5 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-primary/10 sm:w-60 md:w-68 lg:w-76">
+				<img
+					src={metadata.imageUrl}
+					alt={metadata.name}
+					className="size-full object-cover"
+					loading="lazy"
+					style={{ imageRendering: "auto" }}
+				/>
 
 				{/* Subtle overlay on hover */}
-				<div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+				<div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
 				{/* Template name on hover */}
 				<div className="absolute inset-x-0 bottom-0 translate-y-full p-4 transition-transform duration-300 group-hover:translate-y-0">
-					<p className="font-semibold text-white drop-shadow-lg">{metadata.name}</p>
+					<p className="font-semibold text-sm text-white drop-shadow-lg">{metadata.name}</p>
 				</div>
 
 				{/* Shine effect on hover */}
-				<div className="pointer-events-none absolute inset-0 -translate-x-full rotate-12 bg-linear-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+				<div className="pointer-events-none absolute inset-0 -translate-x-full rotate-12 bg-linear-to-r from-transparent via-white/8 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
 			</div>
 		</m.div>
 	);
@@ -46,12 +52,12 @@ type MarqueeRowProps = {
 	duration?: number;
 };
 
-function MarqueeRow({ templates, direction, duration = 40 }: MarqueeRowProps) {
+function MarqueeRow({ templates, direction, duration = 60 }: MarqueeRowProps) {
 	const animateX = direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"];
 
 	return (
 		<m.div
-			className="flex gap-x-4 will-change-transform sm:gap-x-6"
+			className="flex gap-x-5 will-change-transform sm:gap-x-7"
 			animate={{ x: animateX }}
 			transition={{
 				x: {
@@ -91,34 +97,41 @@ export function Templates() {
 	}, []);
 
 	return (
-		<section id="templates" className="overflow-hidden border-t-0! p-4 md:p-8 xl:py-16">
+		<section id="templates" className="overflow-hidden border-t-0! py-16 md:py-24">
 			<m.div
-				className="space-y-4 will-change-[transform,opacity]"
+				className="space-y-3 px-4 will-change-[transform,opacity] md:px-8"
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
-				transition={{ duration: 0.35 }}
+				transition={{ duration: 0.4 }}
 			>
 				<h2 className="font-semibold text-2xl tracking-tight md:text-4xl xl:text-5xl">
-					<Trans>Templates</Trans>
+					<Trans>Premium Templates</Trans>
 				</h2>
 
-				<p className="max-w-2xl text-muted-foreground leading-relaxed">
-					<Trans>
-						Explore our diverse selection of templates, each designed to fit different styles, professions, and
-						personalities. Reactive Resume currently offers 12 templates, with more on the way.
-					</Trans>
+				<p className="max-w-xl text-muted-foreground leading-relaxed">
+					<Trans>Professionally designed templates that make your resume stand out to recruiters.</Trans>
 				</p>
 			</m.div>
 
-			<div className="relative mt-8 -rotate-3 py-8 sm:-rotate-4 lg:mt-0 lg:-rotate-5">
-				{/* Marquee container with minimum height */}
-				<div className="flex min-h-[280px] flex-col gap-y-4 sm:min-h-[320px] sm:gap-y-6 md:min-h-[380px] lg:min-h-[420px]">
+			<div className="relative mt-12 -rotate-3 py-8 sm:-rotate-4 lg:mt-14 lg:-rotate-5">
+				{/* Edge fade masks for cinematic look */}
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-background to-transparent"
+				/>
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-background to-transparent"
+				/>
+
+				{/* Marquee container */}
+				<div className="flex min-h-[300px] flex-col gap-y-5 sm:min-h-[340px] sm:gap-y-7 md:min-h-[400px] lg:min-h-[440px]">
 					{/* First row - moves left to right */}
-					<MarqueeRow templates={row1} direction="left" duration={45} />
+					<MarqueeRow templates={row1} direction="left" duration={80} />
 
 					{/* Second row - moves right to left (opposite direction) */}
-					<MarqueeRow templates={row2} direction="right" duration={50} />
+					<MarqueeRow templates={row2} direction="right" duration={90} />
 				</div>
 			</div>
 		</section>

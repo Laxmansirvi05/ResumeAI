@@ -1,14 +1,14 @@
 {
 	"$schema": "https://mintlify.com/docs.json",
 	"theme": "mint",
-	"name": "Reactive Resume",
+	"name": "ResumeAI",
 	"favicon": "/favicon.svg",
 	"description": "A privacy-minded resume builder that is customizable, portable, open-source, and free to use.",
 	"seo": {
 		"indexing": "navigable",
 		"metatags": {
-			"canonical": "https://docs.rxresu.me",
-			"og:image": "https://rxresu.me/opengraph/banner.jpg"
+			"canonical": "https://docs.resumeai.app",
+			"og:image": "https://resumeai.app/opengraph/banner.jpg"
 		}
 	},
 	"fonts": {
@@ -127,8 +127,8 @@
 			"anchors": [
 				{
 					"icon": "link",
-					"anchor": "Reactive Resume",
-					"href": "https://rxresu.me"
+					"anchor": "ResumeAI",
+					"href": "https://resumeai.app"
 				},
 				{
 					"icon": "github",
@@ -152,7 +152,7 @@
 		"primary": {
 			"type": "button",
 			"label": "Get Started",
-			"href": "https://rxresu.me"
+			"href": "https://resumeai.app"
 		}
 	},
 	"contextual": {
@@ -160,7 +160,7 @@
 	},
 	"footer": {
 		"socials": {
-			"website": "https://rxresu.me",
+			"website": "https://resumeai.app",
 			"github": "https://github.com/amruthpillai/reactive-resume"
 		}
 	}

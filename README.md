@@ -1,68 +1,237 @@
 # ResumeAI
 
-ResumeAI is an AI-powered resume builder and ATS optimization platform built to help job seekers create modern resumes, import/export PDF resumes, and instantly analyze ATS compatibility using keyword matching and AI-powered scoring.
+AI-powered resume builder and ATS optimization platform designed to help students, freshers, and professionals create modern, ATS-friendly resumes with ease.
+
+ResumeAI allows users to build professional resumes, customize templates, analyze ATS compatibility, import/export PDF resumes, and improve resume quality using AI-powered suggestions.
+
+---
+
+## Screenshots
+
+### Landing Page
+
+<img width="1710" height="1107" alt="Screenshot 2026-05-31 at 6 06 00 PM" src="https://github.com/user-attachments/assets/b4d7cad3-a7ab-457b-b960-671adc4ed59e" />
+
+
+### Resume Builder
+
+<img width="1710" height="1107" alt="Screenshot 2026-05-31 at 6 09 15 PM" src="https://github.com/user-attachments/assets/4dcccada-591c-455d-b110-c375fe7f4d23" />
+
+
+### ATS Score Checker
+
+<img width="1710" height="1107" alt="Screenshot 2026-05-31 at 6 10 02 PM" src="https://github.com/user-attachments/assets/085a1138-d3a1-4b1e-b4ec-1f08de5e85e3" />
+
+
+---
 
 ## Features
+
+- AI-powered resume generation
 - Professional resume builder
 - ATS score checker
-- Keyword matching
+- Keyword matching analysis
+- Resume recommendations
 - Resume PDF export
 - Resume PDF import
 - Multiple templates
-- Login / signup
-- Responsive UI
-- AI-powered resume analysis
+- Authentication system
+- Responsive modern UI
+- Real-time resume preview
+- AI-powered resume suggestions
 - Fast and secure workflow
 
+---
+
 ## ATS Resume Checker
-Instantly verify how well your resume matches a job description with our AI-powered ATS scoring system.
+
+Instantly analyze how well a resume matches job descriptions with an ATS scoring system.
+
+Includes:
+
+- ATS score percentage
+- matched keywords
+- missing keywords
+- section analysis
+- improvement suggestions
+- recommendation insights
+
+---
+
+## Resume Builder
+
+Build resumes easily with:
+
+- summary
+- profiles
+- experience
+- education
+- projects
+- skills
+- languages
+- certifications
+
+Preview updates instantly while editing.
+
+---
 
 ## PDF Import & Export
-Easily import existing PDF resumes and export your polished, production-ready resume to PDF.
+
+Users can:
+
+- upload existing resume PDF
+- edit details
+- export polished ATS-friendly resume PDF
+
+---
 
 ## Resume Templates
-Choose from a variety of modern, professional templates designed to pass ATS systems.
+
+Choose from modern professional templates designed for internships and technical roles.
+
+---
 
 ## Authentication
-Secure user login and signup flow ensuring your data remains private.
+
+Secure login and signup support for user accounts.
+
+---
 
 ## AI Resume Support
-Leverage AI for resume analysis, suggestions, and content parsing.
+
+AI helps with:
+
+- content suggestions
+- resume optimization
+- ATS improvements
+- keyword recommendations
+
+---
 
 ## Tech Stack
-- React
+
+### Frontend
+
+- React.js
 - TypeScript
-- Tailwind CSS
+- JavaScript
+- HTML
+- CSS
+
+### Backend / Tools
+
 - Node.js
 - PostgreSQL
-- Vercel
 - AI APIs
 
+### Deployment
+
+- Vercel
+
+---
+
 ## Project Structure
-A Turborepo monorepo featuring a web application built with React/Vite/TanStack and a backend server powered by Node.js/Hono.
+
+Monorepo architecture with frontend and backend modules.
+
+Example structure:
+
+```bash
+resume-ai/
+├── apps/
+├── packages/
+├── components/
+├── api/
+├── public/
+└── configs/
+```
+
+---
 
 ## Installation
-Clone the repository, ensure Node.js and Docker are installed, and run `pnpm install` to install dependencies.
 
-## Environment Variables
-Duplicate `.env.example` to `.env` and fill in your database, API keys, and other required environment variables.
+Clone repository
 
-## Local Development
-Start the local development server and database using Docker and `pnpm dev`. 
+```bash
+git clone https://github.com/Laxmansirvi05/your-repo-name.git
+```
 
-## Deployment on Vercel
-Optimized for deployment on Vercel. Ensure your environment variables are configured in the Vercel dashboard.
+Move into folder
 
-## Security
-We prioritize user data protection. For any issues, please refer to our SECURITY.md file.
+```bash
+cd your-repo-name
+```
 
-## License
-MIT License. Copyright (c) 2026 ResumeAI.
+Install dependencies
+
+```bash
+npm install
+```
+
+Run locally
+
+```bash
+npm run dev
+```
+
+---
 
 ## Future Improvements
-- More resume templates
-- Extended AI features
-- Deeper ATS insights
 
-## Live Demo
-[Live Demo on Vercel](#)
+- additional resume templates
+- more AI customization
+- improved ATS insights
+- export customization
+- save multiple resumes
+- recruiter-focused recommendations
+
+---
+
+## Why I Built This
+
+I built ResumeAI to solve a common student problem:
+
+creating clean professional resumes and checking ATS compatibility quickly.
+
+This project combines AI + frontend development + practical usability.
+
+It reflects my interest in:
+
+- Artificial Intelligence
+- Data Science
+- Web Development
+- Software Engineering
+
+---
+
+## Author
+
+### Laxman Sirvi
+
+🎓 First-Year Dual Degree Student
+
+- B.Tech CSE (AI & ML) — Geetanjali College of Engineering and Technology
+- B.Sc Data Science — IIT Madras
+
+### Skills
+
+- C
+- Python
+- HTML
+- JavaScript
+- GitHub
+- AI & Data Science
+
+### GitHub
+
+https://github.com/Laxmansirvi05
+
+### LinkedIn
+
+https://www.linkedin.com/in/laxmansirvi/
+
+---
+
+## License
+
+MIT License

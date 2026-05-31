@@ -1,11 +1,11 @@
 ---
 name: resume-builder
-description: Generate professional resumes that conform to the Reactive Resume schema. Use when the user wants to create, build, or generate a resume through conversational AI, or asks about resume structure, sections, or content. This skill guides the agent to ask clarifying questions, avoid hallucination, and produce valid JSON output for https://rxresu.me.
+description: Generate professional resumes that conform to the ResumeAI schema. Use when the user wants to create, build, or generate a resume through conversational AI, or asks about resume structure, sections, or content. This skill guides the agent to ask clarifying questions, avoid hallucination, and produce valid JSON output for https://resumeai.app.
 ---
 
-# Resume Builder for Reactive Resume
+# Resume Builder for ResumeAI
 
-Build professional resumes through conversational AI for [Reactive Resume](https://rxresu.me), a free and open-source resume builder.
+Build professional resumes through conversational AI for [ResumeAI](https://resumeai.app), a free and open-source resume builder.
 
 ## Core Principles
 
@@ -51,7 +51,7 @@ Ask about preferences:
 
 ### Step 4: Generate Valid JSON
 
-Output must conform to the Reactive Resume schema. See [references/schema.md](references/schema.md) for the complete schema structure.
+Output must conform to the ResumeAI schema. See [references/schema.md](references/schema.md) for the complete schema structure.
 
 Key requirements:
 
@@ -102,7 +102,7 @@ For students/recent graduates:
 
 ## Output Format
 
-When generating the resume, output a complete JSON object that conforms to the Reactive Resume schema. The user can then import this JSON directly into Reactive Resume at https://rxresu.me.
+When generating the resume, output a complete JSON object that conforms to the ResumeAI schema. The user can then import this JSON directly into ResumeAI at https://resumeai.app.
 
 Example minimal structure:
 

@@ -1,6 +1,6 @@
 # Monorepo Architecture Reorg Handoff
 
-This handoff is the coordination entrypoint for the Reactive Resume architecture reorganization. It intentionally references the implementation plan instead of duplicating it.
+This handoff is the coordination entrypoint for the ResumeAI architecture reorganization. It intentionally references the implementation plan instead of duplicating it.
 
 ## Primary Plan
 

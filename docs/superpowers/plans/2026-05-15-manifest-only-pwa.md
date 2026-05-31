@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Remove Reactive Resume's service-worker and Workbox PWA behavior while keeping install metadata.
+**Goal:** Remove ResumeAI's service-worker and Workbox PWA behavior while keeping install metadata.
 
 **Architecture:** Keep the manifest link and install meta tags in the web root route. Keep manifest data in
 `apps/web/public/manifest.webmanifest`, keep head meta tags in `apps/web/src/libs/pwa.ts`, and remove the

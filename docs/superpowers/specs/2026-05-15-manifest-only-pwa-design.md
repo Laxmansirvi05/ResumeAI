@@ -4,7 +4,7 @@ Date: 2026-05-15
 
 ## Goal
 
-Reduce Reactive Resume's PWA implementation to install metadata only.
+Reduce ResumeAI's PWA implementation to install metadata only.
 
 The site should remain installable on supported phones and desktops through the web app manifest, icons,
 screenshots, and mobile app meta tags. The PWA implementation should not generate, register, or rely on a

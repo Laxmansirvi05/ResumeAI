@@ -1,6 +1,6 @@
 ---
 version: alpha
-name: Reactive Resume
+name: ResumeAI
 description: A monochrome, content-first design system for a free and open-source resume builder. Dark-by-default with light mode support.
 colors:
   primary: "#343434"
@@ -150,7 +150,7 @@ components:
 
 ## Overview
 
-Reactive Resume is a monochrome, content-first design system built for a resume builder used by tens of thousands of people worldwide. The visual identity prioritizes readability and unobtrusiveness — the user's resume content is always the hero, never the chrome around it.
+ResumeAI is a monochrome, content-first design system built for a resume builder used by tens of thousands of people worldwide. The visual identity prioritizes readability and unobtrusiveness — the user's resume content is always the hero, never the chrome around it.
 
 The system defaults to dark mode with a warm near-black backdrop that makes the resume preview "float" as the visual anchor. Light mode is supported as a full alternative. The authenticated app shell (dashboard, builder, settings) uses an entirely achromatic grayscale palette — the sole chromatic exception is destructive red for dangerous actions. The landing page introduces subtle chromatic accents: blue-tinted spotlight gradients on the hero, a multicolor text-mask animation on hover, and social auth provider brand colors (Google blue, LinkedIn blue) on the login page.
 

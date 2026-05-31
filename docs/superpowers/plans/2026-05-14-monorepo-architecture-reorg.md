@@ -4,7 +4,7 @@
 
 > **Status note:** This implementation plan has been executed and may contain historical intermediate paths. Use `AGENTS.md`, `docs/contributing/architecture.mdx`, `docs/adr/0001-workspace-boundaries.md`, and `docs/superpowers/handoffs/2026-05-14-monorepo-architecture-reorg.md` for current architecture guidance.
 
-**Goal:** Reorganize Reactive Resume into clear domain/package boundaries so server, web, API, MCP, PDF, resume-domain logic, and documentation are easier to debug and enforce.
+**Goal:** Reorganize ResumeAI into clear domain/package boundaries so server, web, API, MCP, PDF, resume-domain logic, and documentation are easier to debug and enforce.
 
 **Architecture:** This is one PR with green internal commits. Packages expose role-based explicit public surfaces, web routes become thin shells over domain features, API code is colocated by feature/capability, and boundary rules prevent app-to-app source imports and private package source imports.
 

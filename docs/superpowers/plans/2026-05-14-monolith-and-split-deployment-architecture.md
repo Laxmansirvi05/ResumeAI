@@ -6,7 +6,7 @@
 
 **Goal:** Preserve the existing one-image Docker contract for open-source self-hosters while enabling the same codebase to run as an edge/static frontend plus Node backend for hosted and VPS split deployments.
 
-**Architecture:** Reactive Resume should have one route ownership model and multiple deployment compositions. The OSS Docker image remains a monolith: one image, one port, backend routes plus static SPA fallback. Hosted/split deployments serve the built SPA statically from Cloudflare/S3/NGINX/Caddy and route only backend-owned paths to the Node server, where unknown frontend routes return `404`.
+**Architecture:** ResumeAI should have one route ownership model and multiple deployment compositions. The OSS Docker image remains a monolith: one image, one port, backend routes plus static SPA fallback. Hosted/split deployments serve the built SPA statically from Cloudflare/S3/NGINX/Caddy and route only backend-owned paths to the Node server, where unknown frontend routes return `404`.
 
 **Tech Stack:** Hono, Better Auth, Vite, Turborepo, Docker, optional NGINX/Caddy/CDN routing, Zod JSON Schema generation.
 
@@ -17,7 +17,7 @@
 - Keep the official Docker image as a complete monolith.
 - Do not make NGINX a required wrapper for the official OSS image.
 - Use Hono static serving as the Docker/self-host fallback.
-- Prefer edge/static frontend plus Node backend for hosted Reactive Resume.
+- Prefer edge/static frontend plus Node backend for hosted ResumeAI.
 - Do not pursue Cloudflare Worker backend support in this phase.
 - Keep backend logic Node-first and platform-independent where practical, but do not contort PDF, database, storage, or auth runtime code for Worker compatibility yet.
 - Move custom OAuth bridge behavior under `/api/auth/oauth`.
@@ -61,7 +61,7 @@ Request -> Node/Hono backend-only app
 
 ### Mode 3: Hosted Edge Frontend + Node Backend
 
-**Audience:** Cloud hosted Reactive Resume.
+**Audience:** Cloud hosted ResumeAI.
 
 ```txt
 Request -> Cloudflare/S3/CDN
@@ -179,7 +179,7 @@ Create the document with these sections:
 ```mdx
 # Deployment Architecture
 
-Reactive Resume supports multiple deployment compositions from one codebase.
+ResumeAI supports multiple deployment compositions from one codebase.
 
 ## Default: Docker Monolith
 

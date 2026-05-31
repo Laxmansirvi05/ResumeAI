@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Reactive Resume had package and app code arranged mostly by technical layer. Some server runtime code imported files from the web app source tree, resume-domain behavior lived in generic utilities, API implementation was split across package-root routers/services/helpers, and browser PDF preview code sat near React PDF generation code.
+ResumeAI had package and app code arranged mostly by technical layer. Some server runtime code imported files from the web app source tree, resume-domain behavior lived in generic utilities, API implementation was split across package-root routers/services/helpers, and browser PDF preview code sat near React PDF generation code.
 
 That made debugging harder because a feature's route, service, domain behavior, tests, and runtime adapter could be spread across unrelated folders. It also made package boundaries implicit, so regressions such as app-to-app source imports were easy to reintroduce.
 

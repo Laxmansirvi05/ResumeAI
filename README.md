@@ -81,7 +81,7 @@ Users can:
 
 - upload existing resume PDF
 - edit details
-- export polished ATS-friendly resume PDF
+- export polished ATS-friendly resume in PDF,docs,jpeg format 
 
 ---
 

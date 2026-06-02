@@ -6,8 +6,9 @@ import { BatchLinkPlugin } from "@orpc/client/plugins";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 
 const getRpcUrl = () => {
-	if (typeof window === "undefined") return "http://localhost:3000/api/rpc";
-	return `${window.location.origin}/api/rpc`;
+	const baseUrl =
+		import.meta.env.VITE_API_URL || (typeof window !== "undefined" ? window.location.origin : "http://localhost:3000");
+	return `${baseUrl.replace(/\/$/, "")}/api/rpc`;
 };
 
 const createRpcClient = (): RouterClient<typeof router> => {

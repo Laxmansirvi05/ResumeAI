@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { handleMcp } from "../mcp/handler";
 import { handleOpenApi } from "../openapi/handler";
 import {
@@ -18,6 +19,14 @@ import { handleHealth } from "./health";
 
 export function createApp() {
 	const app = new Hono();
+
+	app.use(
+		"/api/*",
+		cors({
+			origin: (origin, _c) => origin || "*",
+			credentials: true,
+		}),
+	);
 
 	app.all("/api/rpc", (c) => handleRpc(c.req.raw));
 	app.all("/api/rpc/*", (c) => handleRpc(c.req.raw));

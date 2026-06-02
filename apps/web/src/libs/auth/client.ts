@@ -14,7 +14,10 @@ import {
 import { createAuthClient } from "better-auth/react";
 
 const getAuthClient = () => {
+	const baseURL = import.meta.env.VITE_API_URL || undefined;
+
 	return createAuthClient({
+		baseURL,
 		plugins: [
 			dashClient(),
 			adminClient(),

@@ -2,7 +2,6 @@ import type { ProxyOptions } from "vite";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { lingui, linguiTransformerBabelPreset } from "@lingui/vite-plugin";
-import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
@@ -60,8 +59,11 @@ export default defineConfig({
 			quoteStyle: "double",
 			autoCodeSplitting: true,
 		}),
-		viteReact(),
+		viteReact({
+			babel: {
+				presets: [reactCompilerPreset(), linguiTransformerBabelPreset()],
+			},
+		}),
 		lingui(),
-		babel({ presets: [reactCompilerPreset(), linguiTransformerBabelPreset()] }),
 	],
 });

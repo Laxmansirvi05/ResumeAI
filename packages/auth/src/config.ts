@@ -343,7 +343,6 @@ const getAuthConfig = () => {
 
 		socialProviders: {
 			google: {
-				enabled: !!env.GOOGLE_CLIENT_ID && !!env.GOOGLE_CLIENT_SECRET,
 				disableSignUp: env.FLAG_DISABLE_SIGNUPS,
 				disableImplicitSignUp: false,
 				clientId: env.GOOGLE_CLIENT_ID ?? "",
@@ -356,7 +355,6 @@ const getAuthConfig = () => {
 			},
 
 			github: {
-				enabled: !!env.GITHUB_CLIENT_ID && !!env.GITHUB_CLIENT_SECRET,
 				disableSignUp: env.FLAG_DISABLE_SIGNUPS,
 				disableImplicitSignUp: false,
 				clientId: env.GITHUB_CLIENT_ID ?? "",
@@ -370,7 +368,6 @@ const getAuthConfig = () => {
 			},
 
 			linkedin: {
-				enabled: !!env.LINKEDIN_CLIENT_ID && !!env.LINKEDIN_CLIENT_SECRET,
 				disableSignUp: env.FLAG_DISABLE_SIGNUPS,
 				disableImplicitSignUp: false,
 				clientId: env.LINKEDIN_CLIENT_ID ?? "",

@@ -28,6 +28,7 @@
 		"lingui:extract": "turbo run lingui:extract --filter=web",
 		"dev": "turbo run dev",
 		"dev:web": "turbo run dev --filter=web",
+		"preview": "turbo run preview",
 		"knip": "knip",
 		"start": "node apps/server/dist/index.mjs",
 		"typecheck": "turbo run typecheck",

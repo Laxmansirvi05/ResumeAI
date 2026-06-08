@@ -2,36 +2,49 @@ import { constants, existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createPoolConfig } from "@reactive-resume/db/pool-config";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { Pool } from "pg";
 import { env } from "@reactive-resume/env/server";
-import { getLocalDataDirectory } from "@reactive-resume/utils/monorepo.node";
+import { findWorkspaceRoot, getLocalDataDirectory } from "@reactive-resume/utils/monorepo.node";
 
 function resolveFromCurrentModule(relativePath: string) {
 	return fileURLToPath(new URL(relativePath, import.meta.url));
 }
 
-function resolveWorkspaceFolder(folderName: string): string {
-	let dir = resolveFromCurrentModule(".");
+function resolveMigrationsFolder(): string {
+	const candidates = [
+		process.env.MIGRATIONS_FOLDER,
+		findWorkspaceRoot() ? path.join(findWorkspaceRoot() as string, "migrations") : null,
+		path.join(process.cwd(), "migrations"),
+	];
 
+	let dir = resolveFromCurrentModule(".");
 	while (dir !== path.dirname(dir)) {
-		const candidate = path.join(dir, folderName);
-		if (existsSync(candidate)) return candidate;
+		candidates.push(path.join(dir, "migrations"));
 		dir = path.dirname(dir);
 	}
 
-	throw new Error(`Could not locate ${folderName} folder relative to ${resolveFromCurrentModule(".")}`);
+	for (const candidate of candidates) {
+		if (candidate && existsSync(candidate)) return candidate;
+	}
+
+	throw new Error(
+		`Could not locate migrations folder. Checked cwd=${process.cwd()} and parents of ${resolveFromCurrentModule(".")}`,
+	);
 }
 
 async function runDatabaseMigrations() {
 	console.info("Running database migrations...");
 
-	const pool = new Pool({ connectionString: env.DATABASE_URL });
+	const pool = new Pool(createPoolConfig(env.DATABASE_URL));
 	const db = drizzle({ client: pool });
 
 	try {
-		await migrate(db, { migrationsFolder: resolveWorkspaceFolder("migrations") });
+		const migrationsFolder = resolveMigrationsFolder();
+		console.info(`Using migrations folder: ${migrationsFolder}`);
+		await migrate(db, { migrationsFolder });
 		console.info("Database migrations completed");
 	} catch (error) {
 		console.error("Database migrations failed", { error });
@@ -42,7 +55,10 @@ async function runDatabaseMigrations() {
 }
 
 async function validateLocalStoragePath() {
-	if (env.S3_ACCESS_KEY_ID && env.S3_SECRET_ACCESS_KEY && env.S3_BUCKET) return;
+	if (env.S3_ACCESS_KEY_ID && env.S3_SECRET_ACCESS_KEY && env.S3_BUCKET) {
+		console.info("S3 storage configured — skipping local storage validation");
+		return;
+	}
 
 	const dataDirectory = getLocalDataDirectory(env.LOCAL_STORAGE_PATH);
 	console.info(`Validating local storage path: ${dataDirectory}`);

@@ -7,6 +7,9 @@ import { runStartupChecks } from "./startup/checks";
 export { createApp } from "./http/app";
 
 async function main() {
+	console.info("Starting ResumeAI server...");
+	console.info(`NODE_ENV=${process.env.NODE_ENV ?? "development"} SERVER_MODE=${process.env.SERVER_MODE ?? "monolith"}`);
+
 	await runStartupChecks();
 
 	const port =

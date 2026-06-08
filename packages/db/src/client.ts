@@ -2,6 +2,7 @@ import type { NodePgDatabase } from "drizzle-orm/node-postgres";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import { env } from "@reactive-resume/env/server";
+import { createPoolConfig } from "./pool-config";
 import { relations } from "./relations";
 
 declare global {
@@ -11,7 +12,7 @@ declare global {
 
 export function getPool() {
 	if (!globalThis.__pool) {
-		globalThis.__pool = new Pool({ connectionString: env.DATABASE_URL });
+		globalThis.__pool = new Pool(createPoolConfig(env.DATABASE_URL));
 	}
 	return globalThis.__pool;
 }

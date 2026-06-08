@@ -38,3 +38,5 @@ services:
         value: https://your-site.netlify.app
       - key: LOCAL_STORAGE_PATH
         value: /tmp/resumeai-data
+      # Remove all S3_* variables unless you use real object storage (R2/S3).
+      # Link the PostgreSQL database in the Render dashboard so DATABASE_URL is set.

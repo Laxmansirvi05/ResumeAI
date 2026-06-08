@@ -94,4 +94,11 @@ export const env = createEnv({
 	},
 	runtimeEnv: process.env,
 	emptyStringAsUndefined: true,
+	onValidationError: (issues) => {
+		console.error("Invalid environment variables:");
+		for (const issue of issues) {
+			console.error(`  ${issue.path?.join(".") ?? "unknown"}: ${issue.message}`);
+		}
+		throw new Error("Invalid environment variables");
+	},
 });

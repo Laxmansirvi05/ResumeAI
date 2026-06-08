@@ -4,6 +4,9 @@
 	"type": "module",
 	"private": true,
 	"exports": {
+		"./pool-config": {
+			"default": "./src/pool-config.ts"
+		},
 		"./client": {
 			"default": "./src/client.ts"
 		},

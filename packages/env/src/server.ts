@@ -14,6 +14,8 @@ export const env = createEnv({
 	server: {
 		// Application
 		APP_URL: z.url({ protocol: /https?/ }),
+		FRONTEND_URL: z.url({ protocol: /https?/ }).optional(),
+		SERVER_MODE: z.enum(["monolith", "backend-only"]).default("monolith"),
 		SERVER_PORT: z.coerce.number().int().min(1).max(65535).default(3001),
 
 		// Database

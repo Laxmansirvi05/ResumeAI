@@ -58,9 +58,7 @@ function isCustomOAuthProviderEnabled() {
 
 const TRUSTED_ORIGINS = [
 	...getTrustedOrigins(env.APP_URL),
-	...(process.env.VITE_API_URL || process.env.FRONTEND_URL
-		? [process.env.VITE_API_URL || process.env.FRONTEND_URL || ""]
-		: []),
+	...(env.FRONTEND_URL ? [env.FRONTEND_URL.replace(/\/$/, "")] : []),
 ];
 const oauthProviderRateLimit = isRateLimitEnabled
 	? rateLimitConfig.betterAuth.oauthProvider

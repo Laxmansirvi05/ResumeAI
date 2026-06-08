@@ -1,61 +1,29 @@
 import { Hono } from "hono";
-import { cors } from "hono/cors";
-import { handleMcp } from "../mcp/handler";
-import { handleOpenApi } from "../openapi/handler";
-import {
-	handleMcpServerCard,
-	handleOAuthAuthorizationServer,
-	handleOAuthProtectedResource,
-	handleOpenIdConfiguration,
-	handleWellKnownFallback,
-} from "../openapi/metadata";
-import { handleRpc } from "../rpc/handler";
-import { handleSchemaJson } from "../static/schema";
-import { handleLlms, handleRobots, handleSitemap } from "../static/seo";
-import { handleUpload } from "../static/uploads";
 import { handleWebApp, handleWebAppHead, serveWebDistStatic } from "../static/web";
-import { handleAuth, handleOAuth } from "./auth";
-import { handleHealth } from "./health";
+import { registerBackendRoutes } from "./backend";
 
-export function createApp() {
+export function createBackendApp() {
 	const app = new Hono();
 
-	app.use(
-		"/api/*",
-		cors({
-			origin: (origin, _c) => origin || "*",
-			credentials: true,
-		}),
-	);
+	registerBackendRoutes(app);
 
-	app.all("/api/rpc", (c) => handleRpc(c.req.raw));
-	app.all("/api/rpc/*", (c) => handleRpc(c.req.raw));
-	app.all("/api/openapi", (c) => handleOpenApi(c.req.raw));
-	app.all("/api/openapi/*", (c) => handleOpenApi(c.req.raw));
-	app.get("/api/auth/oauth", (c) => handleOAuth(c.req.raw));
-	app.all("/api/auth/*", (c) => handleAuth(c.req.raw));
-	app.get("/api/health", () => handleHealth());
-	app.get("/api/uploads/*", (c) => handleUpload(c.req.raw));
-	app.get("/uploads/*", (c) => handleUpload(c.req.raw));
-	app.get("/schema.json", () => handleSchemaJson());
-	app.all("/mcp", (c) => handleMcp(c.req.raw));
-	app.all("/mcp/*", (c) => handleMcp(c.req.raw));
+	app.all("/*", (c) => c.text("Not Found", 404));
 
-	app.get("/.well-known/mcp/server-card.json", () => handleMcpServerCard());
-	app.get("/.well-known/oauth-authorization-server", (c) => handleOAuthAuthorizationServer(c.req.raw));
-	app.get("/.well-known/oauth-authorization-server/*", (c) => handleOAuthAuthorizationServer(c.req.raw));
-	app.get("/.well-known/openid-configuration", (c) => handleOpenIdConfiguration(c.req.raw));
-	app.get("/.well-known/oauth-protected-resource", () => handleOAuthProtectedResource());
-	app.get("/.well-known/oauth-protected-resource/*", () => handleOAuthProtectedResource());
-	app.all("/.well-known/*", () => handleWellKnownFallback());
+	return app;
+}
 
-	app.on(["GET", "HEAD"], "/robots.txt", (c) => handleRobots({ head: c.req.method === "HEAD" }));
-	app.on(["GET", "HEAD"], "/sitemap.xml", (c) => handleSitemap({ head: c.req.method === "HEAD" }));
-	app.on(["GET", "HEAD"], "/llms.txt", (c) => handleLlms({ head: c.req.method === "HEAD" }));
+export function createMonolithApp() {
+	const app = new Hono();
+
+	registerBackendRoutes(app);
 
 	app.use("/*", serveWebDistStatic);
 	app.on(["GET"], "/*", (c) => handleWebApp(c.req.raw));
 	app.on(["HEAD"], "/*", (c) => handleWebAppHead(c.req.raw));
 
 	return app;
+}
+
+export function createApp() {
+	return process.env.SERVER_MODE === "backend-only" ? createBackendApp() : createMonolithApp();
 }

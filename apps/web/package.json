@@ -5,6 +5,7 @@
 	"private": true,
 	"scripts": {
 		"build": "rm -rf dist && vite build",
+		"build:netlify": "rm -rf dist && vite build && node ../../scripts/generate-netlify-redirects.mjs",
 		"dev": "vite dev",
 		"serve": "vite preview",
 		"preview": "vite preview",

@@ -88,6 +88,40 @@ beforeEach(() => {
 	mocks.handleWebAppHead.mockReturnValue(new Response(null));
 });
 
+describe("createApp deployment modes", () => {
+	it("returns 404 for frontend routes in backend-only mode", async () => {
+		vi.stubEnv("SERVER_MODE", "backend-only");
+		vi.resetModules();
+
+		const { createApp } = await import("./app");
+		const app = createApp();
+		const response = await app.fetch(new Request("http://localhost:3001/dashboard"));
+
+		await expect(response.text()).resolves.toBe("Not Found");
+		expect(response.status).toBe(404);
+		expect(mocks.serveWebDistStatic).not.toHaveBeenCalled();
+		expect(mocks.handleWebApp).not.toHaveBeenCalled();
+
+		vi.unstubAllEnvs();
+		vi.resetModules();
+	});
+
+	it("keeps backend routes available in backend-only mode", async () => {
+		vi.stubEnv("SERVER_MODE", "backend-only");
+		vi.resetModules();
+
+		const { createApp } = await import("./app");
+		const app = createApp();
+		const response = await app.fetch(new Request("http://localhost:3001/api/health"));
+
+		await expect(response.text()).resolves.toBe("health");
+		expect(mocks.handleHealth).toHaveBeenCalled();
+
+		vi.unstubAllEnvs();
+		vi.resetModules();
+	});
+});
+
 describe("createApp", () => {
 	it("routes /api/auth/oauth to the OAuth bridge before the Better Auth wildcard", async () => {
 		const { createApp } = await import("./app");

@@ -21,6 +21,7 @@
 	],
 	"scripts": {
 		"build": "turbo run build",
+		"build:netlify": "pnpm --filter web build:netlify",
 		"check": "biome check --write --unsafe .",
 		"db:generate": "turbo run db:generate --filter=@reactive-resume/db",
 		"db:migrate": "turbo run db:migrate --filter=@reactive-resume/db",

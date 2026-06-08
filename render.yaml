@@ -1,0 +1,40 @@
+# Render Blueprint — ResumeAI backend (split deployment with Netlify frontend)
+#
+# After deploy:
+#   1. Set APP_URL and FRONTEND_URL to your Netlify site URL
+#   2. Set BACKEND_URL on Netlify to this service's URL
+#   3. Configure S3 storage or attach a disk and set LOCAL_STORAGE_PATH=/data
+
+databases:
+  - name: resumeai-db
+    plan: free
+    databaseName: resumeai
+    user: resumeai
+
+services:
+  - type: web
+    name: resumeai-api
+    runtime: node
+    plan: free
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm turbo run build --filter=server --force
+    startCommand: node apps/server/dist/index.mjs
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: SERVER_MODE
+        value: backend-only
+      - key: AUTH_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: resumeai-db
+          property: connectionString
+      - key: APP_URL
+        value: https://your-site.netlify.app
+      - key: FRONTEND_URL
+        value: https://your-site.netlify.app
+      - key: LOCAL_STORAGE_PATH
+        value: /tmp/resumeai-data

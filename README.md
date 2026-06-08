@@ -126,6 +126,8 @@ AI helps with:
 
 ### Deployment
 
+- Docker (monolith — recommended for self-hosting)
+- Render (backend) + Netlify (frontend) — see `render.yaml` and `netlify.toml`
 - Vercel
 
 ---

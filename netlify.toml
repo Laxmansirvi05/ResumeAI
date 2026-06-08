@@ -1,0 +1,26 @@
+# ResumeAI — Netlify frontend (split deployment)
+#
+# Hosts the Vite SPA from apps/web/dist. API traffic is proxied to an external
+# Node backend when BACKEND_URL is set at build time (see scripts/generate-netlify-redirects.mjs).
+#
+# Required Netlify environment variables:
+#   BACKEND_URL — public URL of the Hono server (e.g. https://resumeai-api.onrender.com)
+#
+# Backend environment variables (on Render):
+#   APP_URL       — public site URL users visit (your Netlify URL)
+#   FRONTEND_URL  — same as APP_URL when using Netlify proxy; enables CORS/auth
+#   DATABASE_URL  — PostgreSQL connection string
+#   AUTH_SECRET   — session signing secret
+#   SERVER_MODE=backend-only
+
+[build]
+command = "corepack enable && pnpm install --frozen-lockfile && pnpm --filter web build:netlify"
+publish = "apps/web/dist"
+
+[build.environment]
+NODE_VERSION = "24"
+
+[dev]
+command = "pnpm --filter web dev"
+targetPort = 3000
+autoLaunch = false

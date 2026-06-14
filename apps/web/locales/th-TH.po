@@ -33,11 +33,6 @@ msgstr "สร้าง"
 msgid "Name"
 msgstr "ชื่อ"
 
-#: src/routes/_home/-sections/footer.tsx
-#: src/routes/_home/-sections/hero.tsx
-msgid "(opens in new tab)"
-msgstr "(เปิดในแท็บใหม่)"
-
 #. placeholder {0}: section.items.length
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 msgid "{0, plural, one {# item} other {# items}}"
@@ -48,23 +43,25 @@ msgstr "{0, plural, other {# รายการ}}"
 msgid "{0, plural, one {# role} other {# roles}}"
 msgstr "{0, plural, one {# ตำแหน่ง} other {# ตำแหน่ง}}"
 
+#. placeholder {0}: matched.length
+#. placeholder {1}: missing.length
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "{0} matched · {1} missing"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "{column, plural, one {# Column} other {# Columns}}"
 msgstr "{column, plural, other {# คอลัมน์}}"
 
 #: src/routes/_home/-sections/hero.tsx
-msgid "<0>Finally,</0><1>A free and open-source resume builder</1>"
-msgstr "<0>ท้ายที่สุด,</0><1>แอปสร้างเรซูเม่ฟรีและโอเพนซอร์ส</1>"
+msgid "<0>AI-Powered</0><1>Build your perfect resume in minutes</1>"
+msgstr ""
 
 #: src/routes/_home/-sections/faq.tsx
 msgctxt "Home page FAQ section heading with each word visually separated into individual spans"
 msgid "<0>Frequently</0><1>Asked</1><2>Questions</2>"
 msgstr "<0>บ่อยครั้ง</0><1>คำถาม</1><2>ที่พบบ่อย</2>"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "<0>Thank you for using Reactive Resume! This app is a labor of love, created mostly in my spare time, with wonderful support from open-source contributors around the world.</0><1>If Reactive Resume has been helpful to you, and you'd like to help keep it free and open for everyone, please consider making a donation. Every little bit is appreciated!</1>"
-msgstr "<0>ขอบคุณที่ใช้ Reactive Resume! แอปนี้เป็นผลงานที่ทำด้วยใจ สร้างขึ้นในเวลาว่างของข้าพเจ้า โดยได้รับการสนับสนุนอย่างดีจากผู้ร่วมพัฒนาโอเพนซอร์สทั่วโลก</0><1>หาก Reactive Resume มีประโยชน์สำหรับคุณ และคุณต้องการช่วยให้แอปยังคงเป็นฟรีและเปิดให้ทุกคน กรุณาพิจารณาบริจาค ทุก ๆ การสนับสนุนมีค่า!</1>"
 
 #: src/dialogs/api-key/create.tsx
 msgid "1 month"
@@ -90,18 +87,9 @@ msgstr "6 เดือน"
 msgid "A confirmation link has been sent to your current email address. Please check your inbox to confirm the change."
 msgstr "ลิงก์ยืนยันได้ถูกส่งไปยังอีเมลปัจจุบันของคุณ กรุณาตรวจสอบกล่องจดหมายเพื่อยืนยันการเปลี่ยนแปลง"
 
-#: src/routes/_home/-sections/footer.tsx
-msgid "A free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume."
-msgstr "เครื่องมือสร้างเรซูเม่ฟรีและโอเพนซอร์สที่ทำให้กระบวนการสร้าง การปรับปรุง และการแชร์เรซูเม่ของคุณง่ายขึ้น"
-
 #: src/routes/builder/$resumeId/-components/dock.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "A link to your resume has been copied to clipboard."
 msgstr "ลิงก์ไปยังเรซูเม่ของคุณถูกคัดลอกไปยังคลิปบอร์ดแล้ว"
-
-#: src/routes/_home/-sections/testimonials.tsx
-msgid "A lot of people have written to me over the years to share their experiences with Reactive Resume and how it has helped them, and I never get tired of reading them. If you have a story to share, let me know by sending me an email at <0>{email}</0>."
-msgstr "ตลอดหลายปีที่ผ่านมา มีผู้คนจำนวนมากเขียนมาหาฉันเพื่อแบ่งปันประสบการณ์ของพวกเขากับ Reactive Resume และวิธีที่เครื่องมือนี้ช่วยพวกเขา ฉันไม่เคยเบื่อที่จะอ่านเรื่องราวเหล่านั้นเลย หากคุณมีเรื่องราวที่อยากแบ่งปัน แจ้งให้ฉันทราบโดยส่งอีเมลมาที่ <0>{email}</0>"
 
 #: src/features/settings/pages/profile.tsx
 msgid "A new verification link has been sent to your email address. Please check your inbox to verify your account."
@@ -253,10 +241,6 @@ msgstr "ตัวแทน"
 msgid "Agent ready"
 msgstr "เจ้าหน้าที่พร้อมแล้ว"
 
-#: src/routes/dashboard/-components/sidebar.tsx
-msgid "Agents"
-msgstr "ตัวแทน"
-
 #: src/dialogs/resume/import.tsx
 msgid "AI"
 msgstr "AI"
@@ -285,17 +269,29 @@ msgstr "ผู้ให้บริการ AI ได้ทำการบั�
 msgid "AI Providers"
 msgstr "ผู้ให้บริการ AI"
 
+#. Error shown when ENCRYPTION_SECRET is not configured
+#: src/dialogs/resume/import.tsx
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "AI providers are unavailable. Please configure ENCRYPTION_SECRET in your environment."
+msgstr ""
+
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "AI providers require REDIS_URL and ENCRYPTION_SECRET to be configured."
 msgstr "ผู้ให้บริการ AI ต้องการให้กำหนดค่า REDIS_URL และ ENCRYPTION_SECRET"
+
+#. Error shown when Gemini quota is exceeded during import
+#: src/dialogs/resume/import.tsx
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "AI quota exceeded. Please wait a minute and try again."
+msgstr ""
 
 #: src/libs/locale.ts
 msgid "Albanian"
 msgstr "แอลเบเนีย"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Allow Public Access"
-msgstr "อนุญาตให้เข้าถึงแบบสาธารณะ"
+#: src/components/ui/copyright.tsx
+msgid "All rights reserved."
+msgstr ""
 
 #: src/features/auth/pages/register.tsx
 msgid "Already have an account? <0/>"
@@ -310,18 +306,29 @@ msgstr "อัมฮาริค"
 msgid "An error occurred while loading the page."
 msgstr "เกิดข้อผิดพลาดขณะโหลดหน้า"
 
-#. Fallback toast when importing a resume fails for an unknown reason
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Analysis failed. Make sure you have an AI provider configured in Settings → AI Providers."
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Analyze Another Resume"
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Analyze ATS Compatibility"
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Analyzing resume…"
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Analyzing uploaded resume…"
+msgstr ""
+
 #: src/dialogs/resume/import.tsx
-msgid "An unknown error occurred while importing your resume."
-msgstr "เกิดข้อผิดพลาดที่ไม่ทราบระหว่างนำเข้าเรซูเม่ของคุณ"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Analyze Resume"
-msgstr "วิเคราะห์ประวัติย่อ"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Analyzing…"
-msgstr "กำลังวิเคราะห์…"
+msgid "Analyzing your resume…"
+msgstr ""
 
 #: src/routes/_home/-sections/features.tsx
 msgid "And many more..."
@@ -330,18 +337,6 @@ msgstr "และอีกมากมาย..."
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Anthropic Claude"
 msgstr "แอนโธรปิก โคล้ด"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Anyone visiting the resume's public URL must enter this password to access it."
-msgstr "ผู้เยี่ยมชม URL สาธารณะของเรซูเม่ต้องป้อนรหัสผ่านนี้เพื่อเข้าถึง"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Anyone who has the resume's public URL will be able to view and download your resume without entering a password."
-msgstr "ใครก็ตามที่มี URL สาธารณะของเรซูเม่จะสามารถดูและดาวน์โหลดเรซูเม่ของคุณได้โดยไม่ต้องป้อนรหัสผ่าน"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Anyone with the link can view and download the resume."
-msgstr "ทุกคนที่มีลิงก์สามารถดูและดาวน์โหลดเรซูเม่ได้"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "API Access"
@@ -352,7 +347,6 @@ msgid "API Key"
 msgstr "API Key"
 
 #: src/features/command-palette/pages/navigation.tsx
-#: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/api-keys.tsx
 msgid "API Keys"
 msgstr "API Key"
@@ -414,10 +408,6 @@ msgstr "คุณแน่ใจหรือไม่ว่าต้องกา
 msgid "Are you sure you want to lock this resume?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการล็อคเรซูเม่นี้?"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Are you sure you want to remove password protection?"
-msgstr "คุณแน่ใจหรือไม่ว่าต้องการเอาการป้องกันรหัสผ่านออก?"
-
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "Are you sure you want to reset this section?"
 msgstr "คุณแน่ใจหรือไม่ว่าคุณต้องการรีเซ็ตส่วนนี้?"
@@ -437,6 +427,19 @@ msgstr "สอบถามอะไรก็ได้เกี่ยวกับ
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "อัตราส่วนภาพ"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "ATS analysis completed successfully."
+msgstr ""
+
+#: src/routes/dashboard/-components/sidebar.tsx
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "ATS Score"
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "ATS Score Checker"
+msgstr ""
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -525,6 +528,17 @@ msgstr "รัศมีกรอบ"
 msgid "Border Width"
 msgstr "ความกว้างของกรอบ"
 
+#. Subtitle on the login page
+#. Subtitle on the registration page
+#: src/features/auth/pages/login.tsx
+#: src/features/auth/pages/register.tsx
+msgid "Build professional resumes with AI"
+msgstr ""
+
+#: src/routes/_home/-sections/final-cta.tsx
+msgid "Build Your Resume with AI"
+msgstr ""
+
 #. Screen-reader dialog title for the command palette in the resume builder
 #: src/features/command-palette/index.tsx
 msgid "Builder Command Palette"
@@ -541,7 +555,6 @@ msgstr "รายการหัวข้อย่อย"
 #. Tagline shown in app footer/about area
 #: src/components/ui/copyright.tsx
 #: src/routes/_home/-sections/features.tsx
-#: src/routes/_home/-sections/prefooter.tsx
 msgid "By the community, for the community."
 msgstr "โดยชุมชน เพื่อชุมชน"
 
@@ -579,7 +592,6 @@ msgstr "ฉันสามารถส่งออกเรซูเม่ขอ
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Cancel"
 msgstr "ยกเลิก"
 
@@ -605,10 +617,6 @@ msgstr "ศูนย์กลางมุมมอง"
 msgid "Certifications"
 msgstr "ใบรับรอง"
 
-#: src/routes/_home/-sections/header.tsx
-msgid "Change language"
-msgstr "เปลี่ยนภาษา"
-
 #: src/features/command-palette/pages/preferences/index.tsx
 msgid "Change language to…"
 msgstr "เปลี่ยนภาษาเป็น…"
@@ -621,10 +629,6 @@ msgstr "เปลี่ยนธีมเป็น…"
 msgid "Changed your mind? Rename your resume to something more descriptive."
 msgstr "เปลี่ยนใจหรือไม่? เปลี่ยนชื่อเรซูเม่ของคุณให้อธิบายมากขึ้น"
 
-#: src/routes/_home/-sections/footer.tsx
-msgid "Changelog"
-msgstr "บันทึกการเปลี่ยนแปลง"
-
 #: src/routes/agent/$threadId.tsx
 msgid "Chat"
 msgstr "แชท"
@@ -632,10 +636,6 @@ msgstr "แชท"
 #: src/features/auth/pages/forgot-password.tsx
 msgid "Check your email for a link to reset your password."
 msgstr "ตรวจสอบอีเมลของคุณสำหรับลิงก์รีเซ็ตรหัสผ่าน"
-
-#: src/features/auth/pages/register.tsx
-msgid "Check your email for a link to verify your account."
-msgstr "ตรวจสอบอีเมลของคุณสำหรับลิงก์ยืนยันบัญชีของคุณ"
 
 #: src/libs/locale.ts
 msgid "Chinese (Simplified)"
@@ -658,6 +658,10 @@ msgstr "เลือกเฉดสีที่กำหนดไว้ล่ว
 msgid "Choose a resume"
 msgstr "เลือกเรซูเม่"
 
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Choose a resume to analyze…"
+msgstr ""
+
 #: src/routes/agent/index.tsx
 msgid "Choose an existing conversation from the sidebar, or start a new draft-focused thread."
 msgstr "เลือกบทสนทนาที่มีอยู่แล้วจากแถบด้านข้าง หรือเริ่มหัวข้อสนทนาใหม่ที่เน้นการแก้ไขร่างข้อความ"
@@ -674,6 +678,10 @@ msgstr "ชัดเจน"
 #: src/dialogs/resume/import.tsx
 msgid "Click here to select a file to import"
 msgstr "คลิกที่นี่เพื่อเลือกไฟล์ที่จะนำเข้า"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Click to upload PDF, PNG, or JPEG"
+msgstr ""
 
 #: src/components/input/rich-input.tsx
 msgid "Code Block"
@@ -695,13 +703,13 @@ msgstr "พาเลตต์คำสั่ง"
 msgid "Command Palette - {currentPage}"
 msgstr "พาเลตต์คำสั่ง - {currentPage}"
 
-#: src/routes/_home/-sections/footer.tsx
-msgid "Community"
-msgstr "ชุมชน"
-
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Company"
 msgstr "บริษัท"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Company Name (optional)"
+msgstr ""
 
 #: src/routes/agent/$threadId.tsx
 msgid "Compare this resume against this role URL and update keywords while keeping the voice concise and credible."
@@ -716,7 +724,6 @@ msgstr "ใช้งานฟรีตลอดไป ไม่มีค่า�
 #: src/dialogs/api-key/create.tsx
 #: src/features/settings/pages/danger-zone.tsx
 #: src/hooks/use-prompt.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Confirm"
 msgstr "ยืนยัน"
 
@@ -730,11 +737,9 @@ msgstr "เชื่อมต่อ"
 msgid "Content"
 msgstr "เนื้อหา"
 
-#. Button label to continue to dashboard after successful registration
 #. Final action button after saving backup codes
 #. Primary action button to proceed to next step in two-factor setup
 #: src/dialogs/auth/enable-two-factor.tsx
-#: src/features/auth/pages/register.tsx
 msgid "Continue"
 msgstr "ทำต่อ"
 
@@ -743,13 +748,10 @@ msgstr "ทำต่อ"
 msgid "Continue where you left off"
 msgstr "ดำเนินการต่อจากที่ค้างไว้"
 
-#: src/dialogs/resume/import.tsx
-msgid "Continue where you left off by importing an existing resume you created using Reactive Resume or any another resume builder. Supported formats include PDF, Microsoft Word, as well as JSON files from Reactive Resume."
-msgstr "ดำเนินการต่อจากที่คุณค้างไว้โดยการนำเข้าเรซูเม่ที่เคยสร้างด้วย Reactive Resume หรือโปรแกรมสร้างเรซูเม่อื่น ๆ รูปแบบที่รองรับ ได้แก่ PDF, Microsoft Word รวมถึงไฟล์ JSON จาก Reactive Resume"
-
-#: src/routes/_home/-sections/donate.tsx
-msgid "Contributions fund bug fixes, security updates, and continuous improvements to keep the app running smoothly."
-msgstr "เงินสมทบช่วยสนับสนุนการแก้ไขข้อบกพร่อง อัปเดตความปลอดภัย และการปรับปรุงต่าง ๆ อย่างต่อเนื่อง เพื่อให้แอปทำงานได้อย่างราบรื่น"
+#. Brand name label for Google social sign-in button
+#: src/features/auth/components/social-auth.tsx
+msgid "Continue with Google"
+msgstr ""
 
 #: src/routes/agent/$threadId.tsx
 msgid "Conversation copied."
@@ -785,10 +787,9 @@ msgstr "คัดลอกคีย์ลับนี้และใช้ใน
 msgid "Copy URL"
 msgstr "คัดลอก URL"
 
-#. Error description when AI provider cannot be reached during resume analysis
 #. Error shown when AI provider is unreachable during PDF/DOCX resume import
 #: src/dialogs/resume/import.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
+#: src/routes/dashboard/ats-checker/index.tsx
 msgid "Could not reach the AI provider. Please try again."
 msgstr "ไม่สามารถติดต่อผู้ให้บริการ AI ได้ กรุณาลองอีกครั้ง"
 
@@ -829,10 +830,6 @@ msgstr "จดหมายสมัครงาน"
 #: src/dialogs/resume/sections/volunteer.tsx
 msgid "Create"
 msgstr "สร้าง"
-
-#: src/features/auth/pages/register.tsx
-msgid "Create a new account"
-msgstr "สร้างบัญชีใหม่"
 
 #: src/dialogs/api-key/create.tsx
 #: src/features/settings/pages/api-keys.tsx
@@ -928,6 +925,10 @@ msgstr "สร้างหนึ่งตอนนี้"
 msgid "Create resume with options"
 msgstr "สร้างประวัติย่อพร้อมตัวเลือก"
 
+#: src/dialogs/resume/import.tsx
+msgid "Creating editable resume…"
+msgstr ""
+
 #: src/dialogs/api-key/create.tsx
 msgid "Creating your API key..."
 msgstr "กำลังสร้างคีย์ API ของคุณ..."
@@ -958,7 +959,6 @@ msgid "Czech"
 msgstr "เช็ก"
 
 #: src/features/command-palette/pages/navigation.tsx
-#: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/danger-zone.tsx
 msgid "Danger Zone"
 msgstr "เขตอันตราย"
@@ -1094,43 +1094,14 @@ msgstr "กำลังปิดใช้งานการยืนยันต
 msgid "Disconnect"
 msgstr "ตัดการเชื่อมต่อ"
 
-#: src/routes/_home/-sections/footer.tsx
-msgid "Discord"
-msgstr "Discord"
-
-#: src/components/ui/donation-toast.tsx
-msgid "Dismiss"
-msgstr "อนุญาตให้ออกไป"
-
-#: src/routes/_home/-sections/footer.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "Documentation"
-msgstr "เอกสารอ้างอิง"
-
 #: src/features/auth/pages/login.tsx
 msgid "Don't have an account? <0/>"
 msgstr "ยังไม่มีบัญชี? <0/>"
-
-#: src/components/ui/donation-toast.tsx
-msgid "Donate"
-msgstr "บริจาค"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "Donate to Reactive Resume"
-msgstr "บริจาคให้กับ Reactive Resume"
 
 #. Action button to download two-factor backup codes as a text file
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Download"
 msgstr "ดาวน์โหลด"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
-msgid "Download a copy of your resume as a Word document. Use this file to further customize your resume in Microsoft Word or Google Docs."
-msgstr "ดาวน์โหลดสำเนาของประวัติย่อของคุณในรูปแบบเอกสาร Word ใช้ไฟล์นี้เพื่อปรับแต่งประวัติย่อของคุณเพิ่มเติมใน Microsoft Word หรือ Google Docs"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
-msgid "Download a copy of your resume in JSON format. Use this file for backup or to import your resume into other applications, including AI assistants."
-msgstr "ดาวน์โหลดสำเนาเรซูเม่ของคุณในรูปแบบ JSON ใช้ไฟล์นี้เพื่อสำรองข้อมูลหรือเพื่อนำเข้าเรซูเม่ของคุณไปยังแอปพลิเคชันอื่น รวมถึงผู้ช่วย AI"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
 msgid "Download a copy of your resume in PDF format. Use this file for printing or to easily share your resume with recruiters."
@@ -1149,10 +1120,6 @@ msgstr "ดาวน์โหลด JSON"
 #: src/routes/builder/$resumeId/-components/dock.tsx
 msgid "Download PDF"
 msgstr "ดาวน์โหลด PDF"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
-msgid "Downloads"
-msgstr "ยอดดาวน์โหลด"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
 msgid "Drag and drop sections here to move them between columns"
@@ -1188,6 +1155,10 @@ msgstr "กำลังคัดลอกเรซูเม่ของคุณ
 #: src/libs/locale.ts
 msgid "Dutch"
 msgstr "ดัตช์"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "e.g. Google, Microsoft…"
+msgstr ""
 
 #: src/components/input/chip-input.tsx
 msgid "Edit"
@@ -1243,10 +1214,6 @@ msgstr "เปิดใช้งานการยืนยันตัวตน
 msgid "Enabled"
 msgstr "เปิดใช้งาน"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Enabling password protection..."
-msgstr "กำลังเปิดใช้งานการป้องกันด้วยรหัสผ่าน..."
-
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "Enabling two-factor authentication…"
 msgstr "การเปิดใช้งานการตรวจสอบสิทธิ์แบบสองขั้นตอน…"
@@ -1291,10 +1258,6 @@ msgstr "กรอกรหัสผ่านของคุณเพื่อย
 msgid "Enter your password to disable two-factor authentication. Your account will be less secure without 2FA enabled."
 msgstr "กรอกรหัสผ่านของคุณเพื่อปิดการใช้งานการยืนยันตัวตนสองขั้นตอน บัญชีของคุณจะไม่ปลอดภัยเท่าเดิมหากไม่ได้เปิดใช้งาน 2FA"
 
-#: src/routes/_home/-sections/donate.tsx
-msgid "Every contribution, big or small, makes a huge difference to the project.<0/>Thank you for your support!"
-msgstr "ทุกการสนับสนุน ไม่ว่ามากหรือน้อย มีความสำคัญอย่างยิ่งต่อโปรเจกต์นี้<0/>ขอขอบคุณที่สนับสนุน!"
-
 #: src/routes/_home/-sections/features.tsx
 msgid "Everything you need to create, customize, and share professional resumes. Built with privacy in mind, powered by open source, and completely free forever."
 msgstr "ทุกสิ่งที่คุณต้องการในการสร้าง ปรับแต่ง และแบ่งปันเรซูเม่มืออาชีพ สร้างขึ้นโดยคำนึงถึงความเป็นส่วนตัว เปิดบริการด้วยโอเพ่นซอร์ส และฟรีตลอดไป"
@@ -1318,13 +1281,9 @@ msgstr "หมดอายุใน"
 msgid "Expires on {0}"
 msgstr "หมดอายุเมื่อ {0}"
 
-#: src/routes/_home/-sections/templates.tsx
-msgid "Explore our diverse selection of templates, each designed to fit different styles, professions, and personalities. Reactive Resume currently offers 12 templates, with more on the way."
-msgstr "สำรวจการเลือกแม่แบบที่หลากหลายของเรา ซึ่งแต่ละแบบออกแบบมาให้เหมาะกับสไตล์ อาชีพ และบุคลิกภาพที่ต่างกัน ปัจจุบัน Reactive Resume มีแม่แบบให้เลือก 12 แบบ และจะมีเพิ่มขึ้นอีกในอนาคต"
-
 #: src/features/settings/pages/api-keys.tsx
-msgid "Explore the API documentation to learn how to integrate Reactive Resume with your applications. Find detailed endpoints, request examples, and authentication methods."
-msgstr "ศึกษาคู่มือ API เพื่อเรียนรู้วิธีเชื่อมต่อ Reactive Resume กับแอปพลิเคชันของคุณ ค้นหา endpoint รายละเอียด ตัวอย่างคำขอ และวิธีการยืนยันตัวตนที่ครบถ้วน"
+msgid "Explore the API documentation to learn how to integrate ResumeAI with your applications. Find detailed endpoints, request examples, and authentication methods."
+msgstr ""
 
 #: src/libs/resume/section.tsx
 msgid "Export"
@@ -1334,13 +1293,13 @@ msgstr "ส่งออก"
 msgid "Export your resume to PDF instantly, without any waiting or delays."
 msgstr "ส่งออกเรซูเม่ของคุณเป็นไฟล์ PDF ได้ทันที โดยไม่ต้องรอหรือล่าช้า"
 
+#: src/dialogs/resume/import.tsx
+msgid "Extracting content…"
+msgstr ""
+
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Failed"
 msgstr "ล้มเหลว"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Failed to analyze resume."
-msgstr "ไม่สามารถวิเคราะห์ประวัติการทำงานได้"
 
 #: src/routes/agent/-components/thread-sidebar.tsx
 #: src/routes/agent/$threadId.tsx
@@ -1434,8 +1393,6 @@ msgstr "ไม่สามารถส่งอีเมลรีเซ็ตร
 msgid "Failed to setup two-factor authentication."
 msgstr "ตั้งค่าการยืนยันตัวตนสองขั้นตอนล้มเหลว"
 
-#. Fallback toast when custom OAuth sign-in fails without a provider error message
-#. Fallback toast when passkey sign-in fails without an error message
 #. Fallback toast when sign-in fails and no server error message is available
 #. Fallback toast when social sign-in fails without a provider error message
 #: src/features/auth/components/social-auth.tsx
@@ -1501,6 +1458,10 @@ msgstr "ไม่สามารถยืนยันรหัสของคุ
 msgid "Features"
 msgstr "คุณสมบัติ"
 
+#: src/dialogs/resume/import.tsx
+msgid "File Type"
+msgstr ""
+
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Filter by"
 msgstr "กรองโดย"
@@ -1540,10 +1501,6 @@ msgstr "รูปแบบฟอนต์"
 #: src/routes/_home/-sections/features.tsx
 msgid "For a secure and distraction-free experience."
 msgstr "เพื่อประสบการณ์ที่ปลอดภัยและไร้สิ่งรบกวน"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/notes.tsx
-msgid "For example, information regarding which companies you sent this resume to or the links to the job descriptions can be noted down here."
-msgstr "ตัวอย่างเช่น ข้อมูลเกี่ยวกับบริษัทที่คุณส่งเรซูเม่นี้ให้หรือลิงก์ไปยังรายละเอียดงานสามารถเขียนไว้ได้ที่นี่"
 
 #: src/dialogs/api-key/create.tsx
 msgid "For security reasons, this key will only be displayed once."
@@ -1597,23 +1554,14 @@ msgstr "สร้างชื่อแบบสุ่ม"
 msgid "German"
 msgstr "ภาษาเยอรมัน"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Get a review of your resume with an overall score, strengths, and actionable suggestions."
-msgstr "รับการตรวจสอบประวัติการทำงานของคุณพร้อมคะแนนรวม ข้อดี และคำแนะนำที่สามารถนำไปใช้ได้"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Get an in-depth AI-powered review of your resume with an overall score, key strengths, and practical suggestions. To activate this feature, please update your AI settings."
-msgstr "รับการวิเคราะห์ประวัติย่อของคุณอย่างละเอียดด้วยระบบ AI พร้อมคะแนนรวม จุดแข็งที่สำคัญ และคำแนะนำที่นำไปใช้ได้จริง เพื่อเปิดใช้งานฟีเจอร์นี้ กรุณาอัปเดตการตั้งค่า AI ของคุณ"
-
+#: src/routes/_home/-sections/final-cta.tsx
+#: src/routes/_home/-sections/header.tsx
 #: src/routes/_home/-sections/hero.tsx
 msgid "Get Started"
 msgstr "เริ่มใช้งาน"
 
 #. Authentication provider display name in account settings
-#. Brand name label for GitHub social sign-in button
-#: src/features/auth/components/social-auth.tsx
 #: src/features/settings/authentication/components/hooks.tsx
-#: src/routes/_home/-sections/footer.tsx
 msgid "GitHub"
 msgstr "GitHub"
 
@@ -1622,10 +1570,6 @@ msgstr "GitHub"
 #: src/features/auth/pages/verify-2fa-backup.tsx
 msgid "Go Back"
 msgstr "ย้อนกลับ"
-
-#: src/routes/_home/-sections/header.tsx
-msgid "Go to dashboard"
-msgstr "ไปที่แดชบอร์ด"
 
 #. Accessible label for button navigating from builder to resumes dashboard
 #: src/routes/builder/$resumeId/-components/header.tsx
@@ -1637,8 +1581,6 @@ msgid "Go to…"
 msgstr "ไปที่…"
 
 #. Authentication provider display name in account settings
-#. Brand name label for Google social sign-in button
-#: src/features/auth/components/social-auth.tsx
 #: src/features/settings/authentication/components/hooks.tsx
 msgid "Google"
 msgstr "Google"
@@ -1662,10 +1604,6 @@ msgstr "กรีก"
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Grid"
 msgstr "ตาราง"
-
-#: src/routes/_home/-sections/donate.tsx
-msgid "Grow the Team"
-msgstr "ขยายทีม"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgctxt "Headings or Titles (H1, H2, H3, H4, H5, H6)"
@@ -1703,10 +1641,6 @@ msgstr "พาดหัว"
 #: src/libs/locale.ts
 msgid "Hebrew"
 msgstr "ฮิบรู"
-
-#: src/routes/_home/-sections/donate.tsx
-msgid "Help me bring more experienced contributors on board, reducing the burden on a single maintainer and accelerating development."
-msgstr "ช่วยฉันดึงผู้ร่วมพัฒนาที่มีประสบการณ์มากขึ้นเข้าร่วม ลดภาระของผู้ดูแลเพียงคนเดียวและเร่งกระบวนการพัฒนา"
 
 #: src/features/settings/pages/preferences.tsx
 msgid "Help translate the app to your language"
@@ -1754,10 +1688,9 @@ msgstr "ซ่อนไอคอนทั้งหมดในเรซูเม
 msgid "Hide password"
 msgstr "ซ่อนรหัสผ่าน"
 
-#. Impact severity label in resume analysis suggestion card
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "High"
-msgstr "สูง"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "High Chance"
+msgstr ""
 
 #: src/components/input/rich-input.tsx
 msgid "Highlight"
@@ -1771,10 +1704,6 @@ msgstr "ฮินดี"
 msgid "Home"
 msgstr "หน้าแรก"
 
-#: src/routes/_home/-sections/faq.tsx
-msgid "How do I share my resume?"
-msgstr "จะแชร์เรซูเม่ของฉันได้อย่างไร?"
-
 #: src/features/settings/pages/api-keys.tsx
 msgid "How do I use the API?"
 msgstr "ฉันจะใช้ API ได้อย่างไร?"
@@ -1782,6 +1711,10 @@ msgstr "ฉันจะใช้ API ได้อย่างไร?"
 #: src/routes/_home/-sections/faq.tsx
 msgid "How is my data protected?"
 msgstr "ข้อมูลของฉันได้รับการปกป้องอย่างไร?"
+
+#: src/routes/_home/-sections/faq.tsx
+msgid "How many templates are available?"
+msgstr ""
 
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "https://gateway.example.com/v1"
@@ -1800,6 +1733,11 @@ msgstr "ไอคอน"
 msgid "Identify gaps for an applicant tracking system and apply only high-confidence keyword improvements."
 msgstr "ระบุช่องว่างสำหรับระบบติดตามผู้สมัครงาน และปรับปรุงเฉพาะคำหลักที่มีความน่าเชื่อถือสูงเท่านั้น"
 
+#. File format label in import source selector
+#: src/dialogs/resume/import.tsx
+msgid "Image (PNG, JPEG)"
+msgstr ""
+
 #: src/dialogs/resume/import.tsx
 msgid "Import"
 msgstr "นำเข้า"
@@ -1810,13 +1748,26 @@ msgstr "นำเข้า"
 msgid "Import an existing resume"
 msgstr "นำเข้าเรซูเม่ที่มีอยู่"
 
+#. Fallback toast when importing a resume fails for an unknown reason
 #: src/dialogs/resume/import.tsx
-msgid "Importing your resume..."
-msgstr "กำลังนำเข้าเรซูเม่ของคุณ..."
+msgid "Import failed. Make sure you have an AI provider configured in Settings → AI Providers."
+msgstr ""
+
+#: src/routes/_home/-sections/final-cta.tsx
+msgid "Import your existing resume, choose a premium template, and export a polished PDF — all in minutes."
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Importing resume data…"
+msgstr ""
 
 #: src/dialogs/resume/import.tsx
 msgid "Importing…"
 msgstr "กำลังนำเข้า…"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Improvement Suggestions"
+msgstr ""
 
 #: src/routes/agent/$threadId.tsx
 msgid "Increase zoom"
@@ -1825,10 +1776,6 @@ msgstr "เพิ่มกำลังซูม"
 #: src/libs/locale.ts
 msgid "Indonesian"
 msgstr "อินโดนีเซีย"
-
-#: src/libs/resume/section.tsx
-msgid "Information"
-msgstr "ข้อมูล"
 
 #: src/components/input/rich-input.tsx
 msgid "Inline Code"
@@ -1843,7 +1790,6 @@ msgid "Instant Generation"
 msgstr "การสร้างทันที"
 
 #: src/features/command-palette/pages/navigation.tsx
-#: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/integrations/route.tsx
 msgid "Integrations"
 msgstr "การผสานรวม"
@@ -1857,14 +1803,6 @@ msgstr "ความสนใจ"
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Invalid AI provider configuration."
 msgstr "การกำหนดค่าผู้ให้บริการ AI ไม่ถูกต้อง"
-
-#: src/routes/_home/-sections/faq.tsx
-msgid "Is Reactive Resume available in multiple languages?"
-msgstr "Reactive Resume มีให้บริการหลายภาษาไหม?"
-
-#: src/routes/_home/-sections/faq.tsx
-msgid "Is Reactive Resume really free?"
-msgstr "Reactive Resume ฟรีจริงหรือไม่?"
 
 #: src/dialogs/resume/sections/certification.tsx
 msgid "Issuer"
@@ -1881,6 +1819,10 @@ msgstr "ตัวเอียง"
 #: src/libs/locale.ts
 msgid "Japanese"
 msgstr "ญี่ปุ่น"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Job Description"
+msgstr ""
 
 #. Example full name placeholder on profile settings form
 #. Example full name placeholder on registration form
@@ -1907,11 +1849,6 @@ msgstr "จอห์น.โด"
 msgid "john.doe@example.com"
 msgstr "john.doe@example.com"
 
-#. Import source option for standard JSON Resume format
-#: src/dialogs/resume/import.tsx
-msgid "JSON Resume"
-msgstr "ประวัติย่อในรูปแบบ JSON"
-
 #: src/components/input/rich-input.tsx
 msgid "Justify Align"
 msgstr "จัดแนวชิดขอบทั้งสองด้าน"
@@ -1923,6 +1860,10 @@ msgstr "กันนาดา"
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Key"
 msgstr "สำคัญ"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Keyword Analysis"
+msgstr ""
 
 #: src/dialogs/resume/sections/interest.tsx
 #: src/dialogs/resume/sections/skill.tsx
@@ -1963,24 +1904,10 @@ msgstr "ภาษา"
 msgid "Languages"
 msgstr "ภาษา"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Last analyzed on {updatedAtLabel}"
-msgstr "วิเคราะห์ครั้งล่าสุดเมื่อ {updatedAtLabel}"
-
-#. placeholder {0}: statistics.lastDownloadedAt.toDateString()
-#: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
-msgid "Last downloaded on {0}"
-msgstr "ดาวน์โหลดล่าสุดเมื่อ {0}"
-
 #: src/routes/dashboard/resumes/-components/cards/resume-card.tsx
 #: src/routes/dashboard/resumes/-components/list-view.tsx
 msgid "Last updated on {updatedAt}"
 msgstr "อัปเดตล่าสุด {updatedAt}"
-
-#. placeholder {0}: statistics.lastViewedAt.toDateString()
-#: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
-msgid "Last viewed on {0}"
-msgstr "ดูครั้งล่าสุดเมื่อ {0}"
 
 #: src/libs/locale.ts
 msgid "Latvian"
@@ -1989,10 +1916,6 @@ msgstr "ลัตเวีย"
 #: src/libs/resume/section.tsx
 msgid "Layout"
 msgstr "เค้าโครง"
-
-#: src/routes/_home/-sections/hero.tsx
-msgid "Learn More"
-msgstr "เรียนรู้เพิ่มเติม"
 
 #: src/hooks/use-form-blocker.tsx
 msgid "Leave"
@@ -2021,10 +1944,6 @@ msgstr "ระดับ"
 msgid "Level {level} of 5"
 msgstr "ระดับ {level} จาก 5"
 
-#: src/components/ui/copyright.tsx
-msgid "Licensed under <0>MIT</0>."
-msgstr "จดสัญญาภายใต้ <0>MIT</0>."
-
 #. Appearance theme option for light mode
 #: src/features/user/dropdown-menu.tsx
 #: src/libs/theme.ts
@@ -2040,10 +1959,7 @@ msgid "Line Height"
 msgstr "ความสูงของเส้น"
 
 #. Authentication provider display name in account settings
-#. Brand name label for LinkedIn social sign-in button
-#: src/features/auth/components/social-auth.tsx
 #: src/features/settings/authentication/components/hooks.tsx
-#: src/routes/_home/-sections/footer.tsx
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
@@ -2063,10 +1979,6 @@ msgstr "ลิทัวเนีย"
 msgid "Loading agent workspace…"
 msgstr "กำลังโหลดพื้นที่ทำงานของเอเจนต์…"
 
-#: src/dialogs/resume/import.tsx
-msgid "Loading AI providers. Please try again in a moment."
-msgstr "กำลังโหลดผู้ให้บริการ AI โปรดลองอีกครั้งในภายหลัง"
-
 #: src/features/settings/integrations/components/ai-section.tsx
 #: src/routes/agent/-components/new-thread-setup.tsx
 msgid "Loading providers…"
@@ -2074,6 +1986,7 @@ msgstr "กำลังโหลดผู้ให้บริการ…"
 
 #: src/features/command-palette/pages/resumes.tsx
 #: src/routes/agent/-components/new-thread-setup.tsx
+#: src/routes/dashboard/ats-checker/index.tsx
 msgid "Loading resumes…"
 msgstr "กำลังโหลดต่อ…"
 
@@ -2082,8 +1995,8 @@ msgid "Loading threads…"
 msgstr "กำลังโหลดเธรด…"
 
 #: src/components/layout/loading-screen.tsx
-msgid "Loading…"
-msgstr "กำลังโหลด…"
+msgid "Loading your experience..."
+msgstr ""
 
 #: src/dialogs/resume/sections/education.tsx
 #: src/dialogs/resume/sections/experience.tsx
@@ -2105,19 +2018,10 @@ msgstr "ล็อค"
 msgid "Logout"
 msgstr "ออกจากระบบ"
 
-#: src/routes/_home/-sections/donate.tsx
-msgid "Long-term Sustainability"
-msgstr "ความยั่งยืนในระยะยาว"
-
 #. Link to backup-code verification flow when authenticator app is unavailable
 #: src/features/auth/pages/verify-2fa.tsx
 msgid "Lost access to your authenticator?"
 msgstr "สูญเสียการเข้าถึงตัวตรวจสอบของคุณใช่ไหม?"
-
-#. Impact severity label in resume analysis suggestion card
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Low"
-msgstr "ต่ำ"
 
 #. Layout editor column label for the primary content area
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
@@ -2152,15 +2056,17 @@ msgstr "ระยะขอบ (แนวนอน)"
 msgid "Margin (Vertical)"
 msgstr "ระยะขอบ (แนวตั้ง)"
 
-#. Impact severity label in resume analysis suggestion card
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Medium"
-msgstr "ระดับกลาง"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Matched Keywords"
+msgstr ""
 
-#. File format label in import source selector
-#: src/dialogs/resume/import.tsx
-msgid "Microsoft Word"
-msgstr "ไมโครซอฟต์ เวิร์ด"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Medium Chance"
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Missing Keywords"
+msgstr ""
 
 #: src/routes/agent/$threadId.tsx
 msgid "Missing working resume"
@@ -2195,6 +2101,10 @@ msgstr "ต้องเริ่มต้นด้วย https://"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/basics.tsx
 msgid "Name"
 msgstr "ชื่อ"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Needs Improvement"
+msgstr ""
 
 #: src/libs/locale.ts
 msgid "Nepali"
@@ -2259,10 +2169,6 @@ msgstr "ยังไม่มีกระทู้ใดๆ"
 msgid "Norwegian"
 msgstr "นอร์เวย์"
 
-#: src/libs/resume/section.tsx
-msgid "Notes"
-msgstr "โน้ต"
-
 #: src/libs/locale.ts
 msgid "Odia"
 msgstr "โอเดีย"
@@ -2275,20 +2181,12 @@ msgstr "โอลามา"
 msgid "One-Click Sign-In"
 msgstr "ลงชื่อเข้าใช้ด้วยคลิกเดียว"
 
-#: src/routes/_home/-sections/donate.tsx
-msgid "Ongoing Maintenance"
-msgstr "การบำรุงรักษาต่อเนื่อง"
-
 #. Resume card context menu action to open the resume editor
 #. Resume card dropdown action to open the resume editor
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
 #: src/routes/dashboard/resumes/-components/menus/dropdown-menu.tsx
 msgid "Open"
 msgstr "เปิด"
-
-#: src/routes/builder/$resumeId/-components/dock.tsx
-msgid "Open AI agent"
-msgstr "เอเจนต์ AI แบบเปิด"
 
 #. Button label to open the user's default email app
 #: src/features/auth/pages/forgot-password.tsx
@@ -2298,10 +2196,6 @@ msgstr "เปิดโปรแกรมอีเมล"
 #: src/routes/agent/$threadId.tsx
 msgid "Open in builder"
 msgstr "เปิดในโปรแกรมสร้าง"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Open Integrations Settings"
-msgstr "เปิดการตั้งค่าการเชื่อมต่อแบบเปิด"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Open Source"
@@ -2319,19 +2213,10 @@ msgstr "เข้ากันได้กับ OpenAI"
 msgid "OpenRouter"
 msgstr "โอเพ่นรูเตอร์"
 
-#: src/routes/_home/-sections/donate.tsx
-#: src/routes/_home/-sections/footer.tsx
-msgid "opens in new tab"
-msgstr "เปิดในแท็บใหม่"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Optionally, set a password so that only people with the password can view your resume through the link."
-msgstr "คุณสามารถตั้งรหัสผ่านเพิ่มเติมได้ เพื่อให้เฉพาะผู้ที่มีรหัสผ่านจึงจะดูเรซูเม่ของคุณผ่านลิงก์ได้"
-
 #: src/features/auth/components/social-auth.tsx
 msgctxt "Choose to authenticate with a social provider (Google, GitHub, etc.) instead of email and password"
-msgid "or continue with"
-msgstr "หรือดำเนินการต่อด้วย"
+msgid "or"
+msgstr ""
 
 #: src/components/input/rich-input.tsx
 msgid "Ordered List"
@@ -2340,10 +2225,6 @@ msgstr "ลำดับรายการแบบเรียงลำดับ
 #: src/dialogs/resume/sections/volunteer.tsx
 msgid "Organization"
 msgstr "องค์กร"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Overall Score"
-msgstr "คะแนนรวม"
 
 #: src/libs/resume/section.tsx
 msgid "Page"
@@ -2361,8 +2242,6 @@ msgid "Paragraph"
 msgstr "ย่อหน้า"
 
 #. Authentication provider display name in account settings
-#. Label for passkey sign-in button
-#: src/features/auth/components/social-auth.tsx
 #: src/features/settings/authentication/components/hooks.tsx
 msgid "Passkey"
 msgstr "รหัสผ่าน"
@@ -2397,21 +2276,17 @@ msgstr "พาสคีย์ & 2FA"
 msgid "Password"
 msgstr "รหัสผ่าน"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Password cannot be empty."
-msgstr "รหัสผ่านต้องไม่เว้นว่าง"
-
 #: src/routes/_home/-sections/features.tsx
 msgid "Password Protection"
 msgstr "การป้องกันด้วยรหัสผ่าน"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Password protection has been disabled."
-msgstr "ปิดการป้องกันด้วยรหัสผ่านแล้ว"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Paste the complete job posting for the most accurate analysis."
+msgstr ""
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Password protection has been enabled."
-msgstr "เปิดการป้องกันด้วยรหัสผ่านแล้ว"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Paste the full job description here…"
+msgstr ""
 
 #: src/routes/agent/$threadId.tsx
 msgid "Patch applied"
@@ -2466,6 +2341,10 @@ msgstr "เบอร์โทรศัพท์"
 msgid "Picture"
 msgstr "รูปภาพ"
 
+#: src/dialogs/resume/import.tsx
+msgid "Please do not close the window or refresh the page."
+msgstr ""
+
 #: src/features/auth/pages/reset-password.tsx
 msgid "Please enter a new password for your account"
 msgstr "กรุณาตั้งรหัสผ่านใหม่สำหรับบัญชีของคุณ"
@@ -2477,10 +2356,6 @@ msgstr "กรุณากรอกรหัสผ่านที่เจ้า
 #: src/components/input/rich-input.tsx
 msgid "Please enter the URL you want to link to:"
 msgstr "กรุณากรอก URL ที่คุณต้องการเชื่อมโยง:"
-
-#: src/components/ui/donation-toast.tsx
-msgid "Please support the project"
-msgstr "โปรดให้การสนับสนุนโครงการนี้"
 
 #: src/features/resume/public/public-resume.tsx
 #: src/routes/builder/$resumeId/-components/dock.tsx
@@ -2514,12 +2389,19 @@ msgstr "โปรตุเกส (โปรตุเกส)"
 msgid "Position"
 msgstr "ตำแหน่ง"
 
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Power Words"
+msgstr ""
+
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/command-palette/pages/preferences/index.tsx
-#: src/routes/dashboard/-components/sidebar.tsx
 #: src/routes/dashboard/settings/preferences.tsx
 msgid "Preferences"
 msgstr "การตั้งค่าที่ต้องการ"
+
+#: src/routes/_home/-sections/templates.tsx
+msgid "Premium Templates"
+msgstr ""
 
 #: src/routes/agent/$threadId.tsx
 msgid "Prepare a conservative patch that improves clarity without changing my career narrative."
@@ -2542,6 +2424,10 @@ msgstr "กด<0>Enter</0>เพื่อเปิด"
 msgid "Primary Color"
 msgstr "สีหลัก"
 
+#: src/routes/_home/-sections/templates.tsx
+msgid "Professionally designed templates that make your resume stand out to recruiters."
+msgstr ""
+
 #: src/dialogs/resume/sections/skill.tsx
 msgid "Proficiency"
 msgstr "ความชำนาญ"
@@ -2562,15 +2448,15 @@ msgstr "โปรไฟล์"
 msgid "Progress Bar"
 msgstr "แถบความคืบหน้า"
 
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Project ideas to strengthen your resume for this role"
+msgstr ""
+
 #: src/dialogs/resume/sections/custom.tsx
 #: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Projects"
 msgstr "โปรเจกต์"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Protect your resume from unauthorized access with a password"
-msgstr "ปกป้องเรซูเม่ของคุณจากการเข้าถึงโดยไม่ได้รับอนุญาตด้วยรหัสผ่าน"
 
 #: src/routes/_home/-sections/features.tsx
 msgid "Protect your resume with a password, and let only people with the password view it."
@@ -2594,48 +2480,13 @@ msgstr "สิ่งตีพิมพ์"
 msgid "Publisher"
 msgstr "สำนักพิมพ์"
 
-#: src/routes/_home/-sections/header.tsx
-msgid "Reactive Resume - Go to homepage"
-msgstr "Reactive Resume - ไปที่หน้าแรก"
-
-#. Import source option for current Reactive Resume JSON format
-#: src/dialogs/resume/import.tsx
-msgid "Reactive Resume (JSON)"
-msgstr "เรกติก รีซูเม (JSON)"
-
-#: src/routes/_home/-sections/prefooter.tsx
-msgid "Reactive Resume continues to grow thanks to its vibrant community. This project owes its progress to numerous individuals who've dedicated their time and skills to make it better. We celebrate the coders who've enhanced its features on GitHub, the linguists whose translations on Crowdin have made it accessible to a broader audience, and the people who've donated to support its continued development."
-msgstr "Reactive Resume เติบโตอย่างต่อเนื่องด้วยชุมชนที่เข้มแข็ง โครงการนี้ต้องขอบคุณบุคคลมากมายที่อุทิศเวลาและทักษะให้เพื่อพัฒนาให้ดีขึ้น เราขอเฉลิมฉลองให้กับนักพัฒนาที่ช่วยเสริมฟีเจอร์บน GitHub นักแปลผู้แปลบน Crowdin ซึ่งทำให้เข้าถึงผู้ใช้ได้มากขึ้น และผู้ที่บริจาคเพื่อสนับสนุนการพัฒนาต่อเนื่อง"
-
-#: src/routes/_home/-sections/donate.tsx
-msgid "Reactive Resume is a free and open-source project, built with love and maintained by me and a community of contributors. Your donations help keep the lights on and the code flowing."
-msgstr "Reactive Resume เป็นโครงการฟรีและโอเพนซอร์ส สร้างขึ้นอย่างตั้งใจและดูแลโดยฉันและชุมชนนักพัฒนา การบริจาคของคุณช่วยสนับสนุนการดำเนินการของโค้ดและโครงการนี้ให้ดำเนินต่อไป"
-
-#: src/routes/_home/-sections/hero.tsx
-msgid "Reactive Resume is a free and open-source resume builder that simplifies the process of creating, updating, and sharing your resume."
-msgstr "Reactive Resume คือเครื่องมือสร้างเรซูเม่ฟรีและโอเพนซอร์สที่ทำให้การสร้าง อัปเดต และแบ่งปันเรซูเม่ของคุณเป็นเรื่องง่าย"
-
-#: src/components/ui/donation-toast.tsx
-msgid "Reactive Resume is free and open source. If it has helped you, please consider donating."
-msgstr "Reactive Resume เป็นซอฟต์แวร์ฟรีและโอเพนซอร์ส หากซอฟต์แวร์นี้มีประโยชน์กับคุณ โปรดพิจารณาบริจาคเงินสนับสนุน"
-
-#: src/routes/_home/-sections/faq.tsx
-msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
-msgstr "Reactive Resume เป็นโอเพ่นซอร์ส เน้นความเป็นส่วนตัว และฟรีอย่างสมบูรณ์ แตกต่างจากเครื่องมือสร้างเรซูเม่อื่น ๆ ไม่มีโฆษณา ไม่ติดตามข้อมูลของคุณ หรือจำกัดฟีเจอร์หลังระบบจ่ายเงิน"
-
-#. App version label in footer; includes semantic version variable
-#: src/components/ui/copyright.tsx
-msgid "Reactive Resume v{__APP_VERSION__}"
-msgstr "เรแอคทีฟ เรซูเม่ v{__APP_VERSION__}"
-
-#. Import source option for legacy Reactive Resume v4 JSON format
-#: src/dialogs/resume/import.tsx
-msgid "Reactive Resume v4 (JSON)"
-msgstr "เรแอคทีฟ เรซูเม่ v4 (JSON)"
-
 #: src/dialogs/resume/sections/cover-letter.tsx
 msgid "Recipient"
 msgstr "ผู้รับ"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Recommendation"
+msgstr ""
 
 #: src/components/level/combobox.tsx
 msgid "Rectangle"
@@ -2672,14 +2523,6 @@ msgstr "ลบ"
 msgid "Remove {chip}"
 msgstr "นำออก {chip}"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Remove Password"
-msgstr "ลบรหัสผ่าน"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Removing password protection..."
-msgstr "กำลังลบการป้องกันด้วยรหัสผ่าน..."
-
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-menu.tsx
 msgid "Rename"
 msgstr "เปลี่ยนชื่อ"
@@ -2687,14 +2530,6 @@ msgstr "เปลี่ยนชื่อ"
 #: src/dialogs/resume/sections/experience.tsx
 msgid "Reorder"
 msgstr "เรียงลำดับใหม่"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "Report a Bug"
-msgstr "แจ้งข้อผิดพลาด"
-
-#: src/routes/_home/-sections/footer.tsx
-msgid "Report an issue"
-msgstr "แจ้งปัญหา"
 
 #: src/features/settings/pages/profile.tsx
 msgid "Resend verification email"
@@ -2722,10 +2557,6 @@ msgstr "รีเซ็ตรหัสผ่านของคุณ"
 msgid "Resetting your password..."
 msgstr "กำลังรีเซ็ตรหัสผ่านของคุณ..."
 
-#: src/routes/_home/-sections/footer.tsx
-msgid "Resources"
-msgstr "ทรัพยากร"
-
 #: src/routes/agent/$threadId.tsx
 msgid "Restore"
 msgstr "คืนค่า"
@@ -2735,20 +2566,26 @@ msgid "Restore the resume to before this patch? This will roll back this patch a
 msgstr "กู้คืนสถานะก่อนการติดตั้งแพทช์นี้หรือไม่? การดำเนินการนี้จะย้อนกลับแพทช์นี้และแพทช์ใดๆ ที่ติดตั้งหลังจากนั้น"
 
 #: src/routes/agent/$threadId.tsx
+#: src/routes/dashboard/ats-checker/index.tsx
 msgid "Resume"
 msgstr "ประวัติย่อ"
-
-#: src/libs/resume/section.tsx
-msgid "Resume Analysis"
-msgstr "การวิเคราะห์ประวัติย่อ"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Resume analysis complete."
-msgstr "การวิเคราะห์ประวัติย่อเสร็จสมบูรณ์"
 
 #: src/routes/agent/$threadId.tsx
 msgid "Resume patch"
 msgstr "แพทช์ดำเนินการต่อ"
+
+#: src/routes/_home/-sections/header.tsx
+msgid "ResumeAI - Go to homepage"
+msgstr ""
+
+#: src/routes/_home/-sections/prefooter.tsx
+msgid "ResumeAI uses cutting-edge artificial intelligence to help you craft the perfect ATS-optimized resume in minutes. Experience a completely redesigned platform focusing on minimal aesthetics, dynamic content generation, and unparalleled customization."
+msgstr ""
+
+#. App version label in footer; includes semantic version variable
+#: src/components/ui/copyright.tsx
+msgid "ResumeAI v{__APP_VERSION__}"
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/command-palette/pages/resumes.tsx
@@ -2790,9 +2627,9 @@ msgstr "โรมาเนีย"
 msgid "Rotation"
 msgstr "การหมุน"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Run your first analysis to get a scorecard, strengths, and prioritized suggestions."
-msgstr "ดำเนินการวิเคราะห์ครั้งแรกของคุณเพื่อรับสกอร์การ์ด จุดแข็ง และข้อเสนอแนะที่จัดลำดับความสำคัญ"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Running ATS analysis…"
+msgstr ""
 
 #: src/libs/locale.ts
 msgid "Russian"
@@ -2835,10 +2672,6 @@ msgstr "สแกนรหัส QR ด้านล่างด้วยแอ�
 msgid "School"
 msgstr "โรงเรียน"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Scorecard"
-msgstr "สกอร์การ์ด"
-
 #. Accessible label for command palette search input
 #: src/features/command-palette/index.tsx
 msgid "Search commands"
@@ -2867,6 +2700,10 @@ msgstr "ค้นหา…"
 msgid "Secret copied to clipboard."
 msgstr "คัดลอกรหัสลับไปยังคลิปบอร์ดแล้ว"
 
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Section Analysis"
+msgstr ""
+
 #: src/dialogs/resume/sections/custom.tsx
 msgid "Section Type"
 msgstr "ประเภทของเซกชั่น"
@@ -2890,6 +2727,10 @@ msgstr "เลือกหัวข้อ"
 #: src/routes/agent/-components/new-thread-setup.tsx
 msgid "Select an agent model"
 msgstr "เลือกโมเดลเอเจนต์"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Select Saved Resume"
+msgstr ""
 
 #: src/components/ui/combobox.tsx
 msgid "Select..."
@@ -2921,7 +2762,6 @@ msgid "Serbian"
 msgstr "เซอร์เบีย"
 
 #: src/features/settings/authentication/components/password.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "Set Password"
 msgstr "ตั้งรหัสผ่าน"
 
@@ -2946,10 +2786,6 @@ msgstr "แชร์เรซูเม่ของคุณด้วย URL ส�
 #: src/routes/_home/-sections/features.tsx
 msgid "Shareable Links"
 msgstr "ลิงก์ที่สามารถแชร์ได้"
-
-#: src/libs/resume/section.tsx
-msgid "Sharing"
-msgstr "การแชร์"
 
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 #: src/routes/builder/$resumeId/-sidebar/left/shared/section-item.tsx
@@ -3008,11 +2844,6 @@ msgstr "เข้าสู่ระบบ"
 msgid "Sign in now"
 msgstr "ลงชื่อเข้าใช้ตอนนี้"
 
-#. Title on the login page
-#: src/features/auth/pages/login.tsx
-msgid "Sign in to your account"
-msgstr "ลงชื่อเข้าใช้บัญชีของคุณ"
-
 #: src/routes/_home/-sections/features.tsx
 msgid "Sign in with GitHub, Google or a custom OAuth provider."
 msgstr "ลงชื่อเข้าใช้ด้วย GitHub, Google หรือผู้ให้บริการ OAuth ที่คุณเลือก"
@@ -3021,6 +2852,10 @@ msgstr "ลงชื่อเข้าใช้ด้วย GitHub, Google ห�
 #: src/features/auth/pages/register.tsx
 msgid "Sign up"
 msgstr "ลงทะเบียน"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Significant changes recommended for this role."
+msgstr ""
 
 #: src/features/auth/components/social-auth.tsx
 #: src/features/auth/pages/login.tsx
@@ -3085,23 +2920,9 @@ msgstr "ภาษาสโลวีเนีย"
 msgid "Slug"
 msgstr "ชื่อ"
 
-#. Fallback error description when resume analysis request fails
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Something went wrong while analyzing your resume."
-msgstr "เกิดข้อผิดพลาดขณะวิเคราะห์ประวัติการทำงานของคุณ"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Something went wrong. Please try again."
-msgstr "เกิดข้อผิดพลาดบางอย่าง กรุณาลองใหม่อีกครั้ง"
-
 #: src/routes/dashboard/resumes/index.tsx
 msgid "Sort by"
 msgstr "เรียงตาม"
-
-#: src/routes/_home/-sections/footer.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "Source Code"
-msgstr "ซอร์สโค้ด"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "Spacing (Horizontal)"
@@ -3114,14 +2935,6 @@ msgstr "ระยะห่าง (แนวตั้ง)"
 #: src/libs/locale.ts
 msgid "Spanish"
 msgstr "สเปน"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "Sponsors"
-msgstr "ผู้สนับสนุน"
-
-#: src/routes/_home/-sections/footer.tsx
-msgid "Sponsorships"
-msgstr "สปอนเซอร์ชิปส์"
 
 #. Preset button for setting picture aspect ratio to square
 #: src/components/level/combobox.tsx
@@ -3163,10 +2976,6 @@ msgstr "เริ่มกระทู้ใหม่"
 msgid "Start Thread"
 msgstr "เริ่มกระทู้"
 
-#: src/libs/resume/section.tsx
-msgid "Statistics"
-msgstr "สถิติ"
-
 #: src/hooks/use-form-blocker.tsx
 msgid "Stay"
 msgstr "อยู่ต่อ"
@@ -3175,21 +2984,17 @@ msgstr "อยู่ต่อ"
 msgid "Stop generation"
 msgstr "หยุดการสร้าง"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Strengths"
-msgstr "จุดแข็ง"
-
 #: src/components/input/rich-input.tsx
 msgid "Strike"
 msgstr "ขีดฆ่า"
 
-#: src/routes/_home/-sections/footer.tsx
-msgid "Subreddit"
-msgstr "ซับเรดดิต"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Strong action verbs and keywords to incorporate"
+msgstr ""
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "Suggestions"
-msgstr "ข้อเสนอแนะ"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Suggested Projects"
+msgstr ""
 
 #. Fallback title for a custom summary item in resume builder when content is empty
 #. Fallback title for a custom summary item in resume builder when content is unavailable
@@ -3199,14 +3004,6 @@ msgstr "ข้อเสนอแนะ"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/custom.tsx
 msgid "Summary"
 msgstr "ภาพรวม"
-
-#: src/routes/_home/-sections/donate.tsx
-msgid "Support Reactive Resume"
-msgstr "สนับสนุน Reactive Resume"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "Support the app by doing what you can!"
-msgstr "สนับสนุนแอปด้วยวิธีใดก็ได้ตามกำลังของคุณ!"
 
 #: src/libs/locale.ts
 msgid "Swedish"
@@ -3252,10 +3049,6 @@ msgstr "เทมเพลต"
 msgid "Template Gallery"
 msgstr "แกลเลอรี่เทมเพลต"
 
-#: src/routes/_home/-sections/templates.tsx
-msgid "Templates"
-msgstr "เทมเพลต"
-
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Test"
 msgstr "ทดสอบ"
@@ -3263,10 +3056,6 @@ msgstr "ทดสอบ"
 #: src/features/settings/integrations/components/ai-section.tsx
 msgid "Tested"
 msgstr "ผ่านการทดสอบแล้ว"
-
-#: src/routes/_home/-sections/testimonials.tsx
-msgid "Testimonials"
-msgstr "คำรับรอง"
 
 #: src/components/input/rich-input.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
@@ -3281,10 +3070,9 @@ msgstr "ไทย"
 msgid "The agent needs your input."
 msgstr "ตัวแทนต้องการข้อมูลจากคุณ"
 
-#. Error description when AI returns invalid resume analysis format
-#: src/routes/builder/$resumeId/-sidebar/right/sections/resume-analysis.tsx
-msgid "The AI returned an invalid analysis format. Please try again."
-msgstr "ระบบ AI ส่งคืนรูปแบบการวิเคราะห์ที่ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง"
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "The AI returned an invalid analysis. Please try again."
+msgstr ""
 
 #: src/features/settings/pages/api-keys.tsx
 msgid "The API key has been deleted successfully."
@@ -3299,6 +3087,10 @@ msgstr "หลังลบคีย์ API แล้ว จะไม่สาม
 msgid "The command you're looking for doesn't exist."
 msgstr "คำสั่งที่คุณกำลังมองหาไม่มีอยู่"
 
+#: src/routes/_home/-sections/prefooter.tsx
+msgid "The future of resume building."
+msgstr ""
+
 #. Error shown when AI parsing returns invalid resume structure during import
 #: src/dialogs/resume/import.tsx
 msgid "The imported file could not be parsed into a valid resume."
@@ -3311,6 +3103,10 @@ msgstr "รหัสผ่านที่คุณกรอกไม่ถูก
 #: src/features/auth/pages/resume-password.tsx
 msgid "The resume you are trying to access is password protected"
 msgstr "เรซูเม่ที่คุณพยายามเข้าถึงถูกป้องกันด้วยรหัสผ่าน"
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "The uploaded resume will be parsed by AI and saved to your dashboard before analysis."
+msgstr ""
 
 #: src/components/input/rich-input.tsx
 msgid "The URL you entered is not valid."
@@ -3332,7 +3128,6 @@ msgid "Then, enter the 6 digit code that the app provides to continue."
 msgstr "จากนั้น กรอกรหัส 6 หลักที่แอปให้เพื่อดำเนินการต่อ"
 
 #: src/routes/builder/$resumeId/-components/dock.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/export.tsx
 msgid "There was a problem while generating the DOCX, please try again."
 msgstr "เกิดปัญหาในระหว่างการสร้างไฟล์ DOCX กรุณาลองอีกครั้ง"
 
@@ -3369,29 +3164,13 @@ msgstr "การกระทำนี้ไม่สามารถยกเล
 msgid "This agent thread could not be opened."
 msgstr "ไม่สามารถเปิดกระทู้ตัวแทนนี้ได้"
 
-#: src/dialogs/resume/import.tsx
-msgid "This feature requires a tested AI provider. Please add one in the settings."
-msgstr "ฟีเจอร์นี้ต้องการผู้ให้บริการ AI ที่ผ่านการทดสอบแล้ว โปรดเพิ่มผู้ให้บริการในส่วนการตั้งค่า"
-
 #: src/dialogs/resume/index.tsx
 msgid "This is a URL-friendly name for your resume."
 msgstr "นี่คือชื่อเรซูเม่ที่เหมาะสำหรับใช้ใน URL"
 
-#: src/dialogs/resume/import.tsx
-msgid "This may take a few minutes, depending on the response of the AI provider. Please do not close the window or refresh the page."
-msgstr "อาจใช้เวลาสักครู่ขึ้นอยู่กับการตอบสนองของผู้ให้บริการ AI กรุณาอย่าปิดหน้าต่างหรือรีเฟรชหน้าเว็บ"
-
 #: src/features/resume/builder/draft.ts
 msgid "This resume is locked and cannot be updated."
 msgstr "เรซูเม่นี้ถูกล็อกและไม่สามารถอัปเดตได้"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/notes.tsx
-msgid "This section is reserved for your personal notes specific to this resume. The content here remains private and is not shared with anyone else."
-msgstr "ส่วนนี้มีไว้สำหรับจดโน้ตส่วนตัวของคุณที่เกี่ยวกับเรซูเม่นี้ เนื้อหาตรงนี้เป็นส่วนตัวและไม่ได้แชร์กับใคร"
-
-#: src/features/auth/pages/register.tsx
-msgid "This step is optional, but recommended."
-msgstr "ขั้นตอนนี้ไม่บังคับ แต่แนะนำให้ทำ"
 
 #: src/routes/agent/$threadId.tsx
 msgid "This thread is archived. New messages cannot be sent."
@@ -3406,8 +3185,8 @@ msgid "This thread is read-only because the working resume or AI provider is una
 msgstr "กระทู้นี้อยู่ในโหมดอ่านอย่างเดียว เนื่องจากระบบสร้างเรซูเม่หรือผู้ให้บริการ AI ที่ใช้งานได้ไม่พร้อมใช้งาน"
 
 #: src/dialogs/api-key/create.tsx
-msgid "This will generate a new API key to access the Reactive Resume API to allow machines to interact with your resume data."
-msgstr "การดำเนินการนี้จะสร้างคีย์ API ใหม่เพื่อเข้าถึง API ของ Reactive Resume เพื่อให้เครื่องสามารถโต้ตอบกับข้อมูลเรซูเม่ของคุณได้"
+msgid "This will generate a new API key to access the ResumeAI API to allow machines to interact with your resume data."
+msgstr ""
 
 #: src/features/settings/authentication/components/passkeys.tsx
 msgid "This will help you identify it later, if you plan to have multiple passkeys."
@@ -3440,8 +3219,8 @@ msgid "Tighten the skills section so it supports the target role instead of read
 msgstr "ปรับปรุงส่วนทักษะให้กระชับยิ่งขึ้น เพื่อให้สอดคล้องกับบทบาทที่ต้องการ แทนที่จะดูเหมือนเป็นการใส่คำหลักมาแบบไม่เป็นระเบียบ"
 
 #: src/routes/_home/-sections/hero.tsx
-msgid "Timelapse demonstration of building a resume with Reactive Resume"
-msgstr "วิดีโอไทม์แลปส์การสร้างเรซูเม่ด้วย Reactive Resume"
+msgid "Timelapse demonstration of building a resume with ResumeAI"
+msgstr ""
 
 #: src/dialogs/api-key/create.tsx
 msgid "Tip: Give your API key a name, corresponding to the purpose of the key, to help you identify it later."
@@ -3484,22 +3263,9 @@ msgstr "สลับแถบด้านขวา"
 msgid "Toggle threads"
 msgstr "สลับเธรด"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
-msgid "Track your resume's views and downloads"
-msgstr "ติดตามยอดดูและยอดดาวน์โหลดเรซูเม่ของคุณ"
-
-#: src/routes/_home/-sections/footer.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/information.tsx
-msgid "Translations"
-msgstr "การแปลภาษา"
-
 #: src/libs/locale.ts
 msgid "Turkish"
 msgstr "ตุรกี"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
-msgid "Turn on public sharing to track how many times your resume has been viewed or downloaded. Only you can see your resume's statistics."
-msgstr "เปิดการแชร์สาธารณะเพื่อดูจำนวนครั้งที่มีการดูหรือดาวน์โหลดเรซูเม่ของคุณ มีเพียงคุณเท่านั้นที่เห็นสถิติเรซูเม่ของคุณ"
 
 #: src/dialogs/resume/template/data.ts
 msgid "Two-column with a bold colored sidebar and skill bars; great for creative or tech roles where visual flair is welcome."
@@ -3555,7 +3321,6 @@ msgstr "ตั้งค่าการยืนยันตัวตนแบบ
 msgid "Two-Factor Authentication QR Code"
 msgstr "รหัส QR สำหรับการยืนยันตัวตนแบบสองขั้นตอน"
 
-#: src/dialogs/resume/import.tsx
 #: src/routes/builder/$resumeId/-sidebar/right/sections/design.tsx
 msgid "Type"
 msgstr "ประเภท"
@@ -3708,6 +3473,14 @@ msgstr "กำลังอัปเดตรหัสผ่านของคุ
 msgid "Updating your resume..."
 msgstr "กำลังอัปเดตประวัติย่อของคุณ..."
 
+#: src/dialogs/resume/import.tsx
+msgid "Upload a PDF or image (PNG, JPEG) of your resume. AI will extract the content and create an editable resume you can customize."
+msgstr ""
+
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Upload from Device"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Upload picture"
 msgstr "อัปโหลดรูปภาพ"
@@ -3716,9 +3489,7 @@ msgstr "อัปโหลดรูปภาพ"
 msgid "Uploading picture…"
 msgstr "กำลังอัปโหลดรูปภาพ…"
 
-#. Form field label for the generated public resume link in sharing settings
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
 msgid "URL"
 msgstr "URL"
 
@@ -3784,23 +3555,19 @@ msgstr "กำลังตรวจสอบรหัส…"
 msgid "Verifying password..."
 msgstr "กำลังตรวจสอบรหัสผ่าน..."
 
-#: src/features/auth/pages/register.tsx
-msgid "Verifying your email is required when resetting your password."
-msgstr "ต้องยืนยันอีเมลของคุณเมื่อรีเซ็ตรหัสผ่านของคุณ."
-
 #: src/libs/locale.ts
 msgid "Vietnamese"
 msgstr "เวียดนาม"
-
-#: src/routes/builder/$resumeId/-sidebar/right/sections/statistics.tsx
-msgid "Views"
-msgstr "ยอดดู"
 
 #: src/dialogs/resume/sections/custom.tsx
 #: src/libs/resume/section-title.ts
 #: src/libs/resume/section.tsx
 msgid "Volunteer"
 msgstr "อาสาสมัคร"
+
+#: src/routes/_home/-sections/faq.tsx
+msgid "We offer a curated selection of premium templates designed to fit various professions and styles, ensuring you stand out to recruiters."
+msgstr ""
 
 #: src/dialogs/resume/sections/award.tsx
 #: src/dialogs/resume/sections/certification.tsx
@@ -3815,6 +3582,12 @@ msgstr "อาสาสมัคร"
 msgid "Website"
 msgstr "เว็บไซต์"
 
+#. Title on the login page
+#: src/features/auth/pages/login.tsx
+#: src/features/auth/pages/register.tsx
+msgid "Welcome to ResumeAI"
+msgstr ""
+
 #: src/routes/agent/$threadId.tsx
 msgid "What do you want to do?"
 msgstr "คุณต้องการทำอะไร?"
@@ -3824,12 +3597,8 @@ msgid "What do you want to rename this section to?"
 msgstr "คุณต้องการเปลี่ยนชื่อส่วนนี้เป็นอะไร?"
 
 #: src/routes/_home/-sections/faq.tsx
-msgid "What makes Reactive Resume different from other resume builders?"
-msgstr "อะไรที่ทำให้ Reactive Resume แตกต่างจากตัวสร้างประวัติย่ออื่น ๆ?"
-
-#: src/routes/_home/-sections/hero.tsx
-msgid "What's new in the latest version?"
-msgstr "มีอะไรใหม่ในเวอร์ชันล่าสุด?"
+msgid "What formats can I import my resume from?"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-components/header.tsx
 #: src/routes/dashboard/resumes/-components/menus/context-menu.tsx
@@ -3845,18 +3614,6 @@ msgstr "ทำงานกับ OpenAI"
 msgid "Working…"
 msgstr "กำลังทำงาน…"
 
-#: src/routes/_home/-sections/footer.tsx
-msgid "X (Twitter)"
-msgstr "X (ทวิตเตอร์)"
-
-#: src/routes/_home/-sections/faq.tsx
-msgid "Yes, Reactive Resume is available in multiple languages. You can choose your preferred language in the settings page, or using the language switcher in the top right corner. If you don't see your language, or you would like to improve the existing translations, you can <0>contribute to the translations on Crowdin<1> (opens in new tab)</1></0>."
-msgstr "ใช่, Reactive Resume มีให้บริการหลายภาษา คุณสามารถเลือกภาษาที่คุณต้องการได้ในหน้าตั้งค่าหรือใช้ตัวสลับภาษาในมุมขวาบน หากคุณไม่เห็นภาษาของคุณ หรือหากคุณต้องการปรับปรุงคำแปลปัจจุบัน คุณสามารถ<0>ร่วมแปลบน Crowdin<1> (เปิดในแท็บใหม่)</1></0> ได้"
-
-#: src/routes/_home/-sections/faq.tsx
-msgid "Yes! Reactive Resume is completely free to use, with no hidden costs, premium tiers, or subscription fees. It's open-source and will always remain free."
-msgstr "ใช่! Reactive Resume ใช้งานได้ฟรีโดยสมบูรณ์ ไม่มีค่าใช้จ่ายแอบแฝง ระดับพรีเมียม หรือค่าบริการรายเดือน เป็นโอเพนซอร์สและจะฟรีตลอดไป."
-
 #: src/routes/_home/-sections/features.tsx
 msgid "You also have the option to deploy on your own servers using the Docker image."
 msgstr "คุณยังมีตัวเลือกในการนำไปใช้งานบนเซิร์ฟเวอร์ของคุณเองโดยใช้ Docker image ได้อีกด้วย."
@@ -3866,15 +3623,14 @@ msgid "You can also use your username to login."
 msgstr "คุณยังสามารถใช้ชื่อผู้ใช้ของคุณในการเข้าสู่ระบบได้ด้วย."
 
 #: src/routes/_home/-sections/faq.tsx
-msgid "You can share your resume via a unique public URL, protect it with a password, or download it as a PDF to share directly. The choice is yours!"
-msgstr "คุณสามารถแบ่งปันประวัติย่อของคุณผ่าน URL สาธารณะเฉพาะ ป้องกันด้วยรหัสผ่าน หรือดาวน์โหลดเป็น PDF เพื่อแชร์โดยตรงก็ได้ ตัวเลือกเป็นของคุณ!"
+msgid "You can instantly import your existing resume from a PDF or an Image. Our AI automatically extracts your information to pre-fill your new, beautiful resume."
+msgstr ""
 
 #: src/hooks/use-form-blocker.tsx
 msgid "You have unsaved changes that will be lost."
 msgstr "คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะสูญหาย"
 
 #: src/features/auth/pages/forgot-password.tsx
-#: src/features/auth/pages/register.tsx
 msgid "You've got mail!"
 msgstr "เมลเข้าแล้ว!"
 
@@ -3895,8 +3651,8 @@ msgid "Your data is secure, and never shared or sold to anyone."
 msgstr "ข้อมูลของคุณปลอดภัย และจะไม่ถูกแชร์หรือขายให้กับใครทั้งสิ้น."
 
 #: src/routes/_home/-sections/faq.tsx
-msgid "Your data is stored securely and is never shared with third parties. You can also self-host Reactive Resume on your own servers for complete control over your data."
-msgstr "ข้อมูลของคุณถูกจัดเก็บไว้อย่างปลอดภัยและจะไม่ถูกแชร์กับบุคคลที่สาม คุณยังสามารถโฮสต์ Reactive Resume ด้วยตัวเองบนเซิร์ฟเวอร์ของคุณเพื่อควบคุมข้อมูลได้อย่างสมบูรณ์."
+msgid "Your data is stored securely and is never shared with third parties. Your privacy is a priority."
+msgstr ""
 
 #: src/features/resume/builder/draft.ts
 msgid "Your latest changes could not be saved."
@@ -3936,13 +3692,13 @@ msgstr "ประวัติย่อของคุณถูกนำเข้
 msgid "Your resume has been updated successfully."
 msgstr "ประวัติย่อของคุณได้รับการอัปเดตเรียบร้อยแล้ว"
 
-#: src/routes/builder/$resumeId/-sidebar/right/sections/sharing.tsx
-msgid "Your resume's public link is currently protected by a password. Share the password only with people you trust."
-msgstr "ขณะนี้ลิงก์สาธารณะของประวัติย่อคุณได้รับการป้องกันด้วยรหัสผ่าน โปรดแบ่งปันรหัสผ่านกับเฉพาะบุคคลที่คุณไว้ใจเท่านั้น."
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Your resume has potential but needs some improvements."
+msgstr ""
 
-#: src/routes/_home/-sections/donate.tsx
-msgid "Your support ensures the project remains free and accessible for everyone, now and in the future."
-msgstr "การสนับสนุนของคุณช่วยให้โครงการยังคงฟรีและเข้าถึงได้สำหรับทุกคน ทั้งในปัจจุบันและอนาคต."
+#: src/routes/dashboard/ats-checker/index.tsx
+msgid "Your resume is well-aligned with this role."
+msgstr ""
 
 #: src/routes/builder/$resumeId/-components/dock.tsx
 msgid "Zoom in"
@@ -3959,4 +3715,3 @@ msgstr "ซูมออก"
 #: src/libs/locale.ts
 msgid "Zulu"
 msgstr "ซูลู"
-

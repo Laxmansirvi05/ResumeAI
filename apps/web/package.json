@@ -4,7 +4,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"build": "rm -rf dist && vite build",
+		"build": "pnpm run lingui:extract && rm -rf dist && vite build",
 		"dev": "vite dev",
 		"serve": "vite preview",
 		"preview": "vite preview",
